@@ -15,7 +15,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    grid-template-rows: repeat(2, 1fr) 3fr;
+    grid-template-rows: auto auto 3fr;
     gap: 1px; /* 'border' effect */
 }
 
@@ -34,9 +34,14 @@
 .div8 { grid-area: 3 / 2 / 4 / 3; }
 .div9 { grid-area: 3 / 3 / 4 / 4; }
 
-#hero > div:nth-child(5) {
+#hero > div:nth-child(5){
     background-color: var(--purple);
-    background-image: url(../assets/img/name.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
+}
+
+#hero > div:nth-child(5) img,
+#hero > div:nth-child(2) img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    -webkit-user-drag: none;
 }
