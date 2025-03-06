@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'MartianMono';
+    src: url(../assets/fonts/MartianMono.ttf);
+}
+
+:root {
+    /* Colors */
+    --purple: #6C67FF;
+    --black: #161616;
+    --white: #D7D7D7;
+}
+
+#hero {
+    background-color: var(--white);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: repeat(2, 1fr) 3fr;
+    gap: 1px; /* 'border' effect */
+}
+
+#hero > div {
+    background-color: var(--black);
+}
+
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }
+.div4 { grid-area: 2 / 1 / 3 / 2; }
+.div5 { grid-area: 2 / 2 / 3 / 3; }
+.div6 { grid-area: 2 / 3 / 3 / 4; }
+.div7 { grid-area: 3 / 1 / 4 / 2; }
+.div8 { grid-area: 3 / 2 / 4 / 3; }
+.div9 { grid-area: 3 / 3 / 4 / 4; }
+
+#hero > div:nth-child(5) {
+    background-color: var(--purple);
+    background-image: url(../assets/img/name.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
