@@ -2,10 +2,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Custom cursor
     const customCursor = document.getElementById('custom-cursor');
+    let lastMove = 0;
+    const throttleDelay = 16; // Approximately 60fps
 
     document.addEventListener('mousemove', function (e) {
-        customCursor.style.left = e.clientX + 'px';
-        customCursor.style.top = e.clientY + 'px';
+        const now = Date.now();
+        if (now - lastMove >= throttleDelay) {
+            customCursor.style.left = e.clientX + 'px';
+            customCursor.style.top = e.clientY + 'px';
+            lastMove = now;
+        }
     });
 
     // Smooth scroll to sections for navigation buttons
