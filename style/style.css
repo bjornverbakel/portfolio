@@ -27,6 +27,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    cursor: none;
+}
+
 p {
     font-family: 'Martian-Mono';
     font-size: 1rem;
@@ -62,6 +66,23 @@ section:not(#hero) {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+a {
+    cursor: none;
+}
+
+#custom-cursor {
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    mix-blend-mode: difference;
+    position: fixed;
+    pointer-events: none;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 50%, 65% 65%, 50% 100%);
+    transition: background-color 0.3s ease;
+    z-index: 1000;
 }
 
 /* Hero grid section */
@@ -202,7 +223,7 @@ nav ul {
 }
 
 .main ul li a {
-    cursor: pointer;
+    /*cursor: pointer;*/
     font-family: 'VCR-OSD-Mono';
     font-size: 1.5rem;
     color: var(--white);
@@ -297,7 +318,7 @@ nav ul {
 }
 
 .project {
-    cursor: pointer;
+    /*cursor: pointer;*/
     display: flex;
     align-items: center;
     justify-content: space-between;

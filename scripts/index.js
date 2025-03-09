@@ -1,20 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Expand project containers on click
-    const projectContainers = document.querySelectorAll('.project-container');
+    // Custom cursor
+    const customCursor = document.getElementById('custom-cursor');
 
-    projectContainers.forEach(container => {
-        container.addEventListener('click', function () {
-            // Collapse any currently expanded item
-            projectContainers.forEach(item => {
-                if (item !== container) {
-                    item.classList.remove('expanded');
-                }
-            });
-
-            // Toggle the clicked item
-            this.classList.toggle('expanded');
-        });
+    document.addEventListener('mousemove', function (e) {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
     });
 
     // Smooth scroll to sections for navigation buttons
@@ -33,6 +24,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 top: offsetPosition,
                 behavior: 'smooth'
             });
+        });
+    });
+
+    // Expand project containers on click
+    const projectContainers = document.querySelectorAll('.project-container');
+
+    projectContainers.forEach(container => {
+        container.addEventListener('click', function () {
+            // Collapse any currently expanded item
+            projectContainers.forEach(item => {
+                if (item !== container) {
+                    item.classList.remove('expanded');
+                }
+            });
+
+            // Toggle the clicked item
+            this.classList.toggle('expanded');
         });
     });
 });
