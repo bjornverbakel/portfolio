@@ -23,6 +23,10 @@
 }
 
 /* General */
+html {
+    scroll-behavior: smooth;
+}
+
 p {
     font-family: 'Martian-Mono';
     font-size: 1rem;
@@ -188,9 +192,6 @@ nav ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'VCR-OSD-Mono';
-    font-size: 1.5rem;
-    color: var(--white);
     gap: 5vh;
 }
 
@@ -200,11 +201,16 @@ nav ul {
     }
 }
 
-.main ul li {
+.main ul li a {
     cursor: pointer;
+    font-family: 'VCR-OSD-Mono';
+    font-size: 1.5rem;
+    color: var(--white);
+    text-decoration: none;
+
 }
 
-.main ul li:hover {
+.main ul li a:hover {
     background-color: var(--white);
     color: var(--black);
     text-shadow: var(--purple) 1px 1px;
