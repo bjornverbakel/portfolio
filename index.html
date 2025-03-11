@@ -10,11 +10,6 @@
 
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
-
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -55,35 +50,38 @@
                     <div class="header-container">0</div>
                     <h1>Info</h1>
                 </div>
-                <h2>About me</h2>
-                <p>Hello! My name is Bjorn Verbakel. I am an 18-year-old student from the Netherlands studying ICT &
-                    Media design at Fontys Eindhoven. I am mainly focussed and interested in front-end web development.
-                </p>
-                <h2>Experience with</h2>
-                <div class="exp-container">
-                    <div class="exp">
-                        <img src="assets/img/html.svg" alt="HTML">
-                        <p class="exp-label">HTML</p>
-                    </div>
-                    <div class="exp">
-                        <img src="assets/img/css.svg" alt="HTML">
-                        <p class="exp-label">CSS</p>
-                    </div>
-                    <div class="exp">
-                        <img src="assets/img/js.svg" alt="HTML">
-                        <p class="exp-label">JavaScript</p>
-                    </div>
-                    <div class="exp">
-                        <img src="assets/img/node.svg" alt="HTML">
-                        <p class="exp-label">Node.js</p>
-                    </div>
-                    <div class="exp">
-                        <img src="assets/img/blender.svg" alt="HTML">
-                        <p class="exp-label">Blender</p>
-                    </div>
-                    <div class="exp">
-                        <img src="assets/img/figma.svg" alt="HTML">
-                        <p class="exp-label">Figma</p>
+                <div class="content-text">
+                    <h2>About me</h2>
+                    <p>Hello! My name is Bjorn Verbakel. I am an 18-year-old student from the Netherlands studying ICT &
+                        Media design at Fontys Eindhoven. I am mainly focussed and interested in front-end web
+                        development.
+                    </p>
+                    <h2>Experience with</h2>
+                    <div class="exp-container">
+                        <div class="exp">
+                            <img src="assets/img/html.svg" alt="HTML">
+                            <p class="exp-label">HTML</p>
+                        </div>
+                        <div class="exp">
+                            <img src="assets/img/css.svg" alt="HTML">
+                            <p class="exp-label">CSS</p>
+                        </div>
+                        <div class="exp">
+                            <img src="assets/img/js.svg" alt="HTML">
+                            <p class="exp-label">JavaScript</p>
+                        </div>
+                        <div class="exp">
+                            <img src="assets/img/node.svg" alt="HTML">
+                            <p class="exp-label">Node.js</p>
+                        </div>
+                        <div class="exp">
+                            <img src="assets/img/blender.svg" alt="HTML">
+                            <p class="exp-label">Blender</p>
+                        </div>
+                        <div class="exp">
+                            <img src="assets/img/figma.svg" alt="HTML">
+                            <p class="exp-label">Figma</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -103,10 +101,50 @@
                         </div>
                         <div class="project-details-wrapper">
                             <div class="project-details">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis cupiditate beatae
-                                    modi, maiores harum obcaecati fugiat facilis corrupti quaerat temporibus sunt
-                                    repellendus, distinctio molestiae! Dolorum eius dolor minus voluptate quibusdam!
+                                <p>I made a choose-your-own-adventure video experience for <a
+                                        href="https://hethornemannhuis.nl/">Het Hornemann Huis</a>, a history museum
+                                    that tells the tragic story of what the Hornemann family went through during the
+                                    Second World War.
+                                    <br><br>
+                                    The goal was to get young people more interested in history, and make them think
+                                    about the dilemma's that people had to face during the war. The product was this
+                                    interactive experience, where the audience gets presented a story sequence which
+                                    ends with a dilemma. People can then vote on which choice they would have made with
+                                    their phones, and see the results of the poll afterwards. The most voted answer
+                                    decides what the next sequence will be, and what the eventual outcome of the story
+                                    will be.
                                 </p>
+                                <br><br>
+                                <div class="slideshow-container">
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/hornemann-pic1.png" alt="Demo">
+                                        <p>Starting screen</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/hornemann-pic2.png" alt="Demo">
+                                        <p>Dilemma screen</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/hornemann-pic3.png" alt="Demo">
+                                        <p>Mobile voting screen</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/hornemann-pic4.jpg" alt="Demo">
+                                        <p>Testing live with audience</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <video controls alt="Demo">
+                                            <source src="assets/img/projects/hornemann-vid.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <p>Video & mobile voting screen</p>
+                                    </div>
+                                </div>
+                                <div class="slideshow-controls">
+                                    <a class="prev"><img src="assets/img/chevron.svg" alt="Previous"></a>
+                                    <div class="dot-container"></div>
+                                    <a class="next"><img src="assets/img/chevron.svg" alt="Next"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,27 +158,65 @@
                         </div>
                         <div class="project-details-wrapper">
                             <div class="project-details">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis cupiditate beatae
-                                    modi, maiores harum obcaecati fugiat facilis corrupti quaerat temporibus sunt
-                                    repellendus, distinctio molestiae! Dolorum eius dolor minus voluptate quibusdam!
+                                <p>I made a website for our media studio project, where we had to create a concept for a
+                                    new media studio. This was then used to pitch to clients with the goal of securing
+                                    the preferred assignment we would like to work on for the rest of the semester.
+                                    <br><br>
+                                    The website features storytelling aspects, where the client is sketched as a sailor
+                                    lost at sea, and studio as a compass that guides them to their destination.
                                 </p>
+                                <br><br>
+                                <div class="slideshow-container">
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/studio-pic1.png" alt="Demo">
+                                        <p>Hero section</p>
+                                    </div>
+                                </div>
+                                <div class="slideshow-controls">
+                                    <a class="prev"><img src="assets/img/chevron.svg" alt="Previous"></a>
+                                    <div class="dot-container"></div>
+                                    <a class="next"><img src="assets/img/chevron.svg" alt="Next"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-container">
                         <div class="project">
                             <div class="project-title-container">
-                                <h2>3D Monitor</h2>
+                                <h2>3D monitor & operating system</h2>
                                 <p class="subtitle">3D environment with interactable PC and operating system</p>
                             </div>
                             <div class="expand-btn"><img src="assets/img/chevron.svg" alt="expand-btn"></div>
                         </div>
                         <div class="project-details-wrapper">
                             <div class="project-details">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis cupiditate beatae
-                                    modi, maiores harum obcaecati fugiat facilis corrupti quaerat temporibus sunt
-                                    repellendus, distinctio molestiae! Dolorum eius dolor minus voluptate quibusdam!
+                                <p>I made a 3D environment with a monitor that displays an operating system. The monitor
+                                    is interactable, and the user can perform various actions on it. It was mostly based
+                                    on the website <a href="https://henryheffernan.com/">henryheffernan.com</a> which I
+                                    thought looked cool and wanted to try and recreate from scratch. The OS was made to
+                                    look similar to Windows 98, but is not the exact same.
+                                    <br><br>
+                                    The 3D model was custom made and I learned Blender to create it. The screen was tied
+                                    to the 3D object using <a href="https://github.com/pmndrs/drei">ThreeJS Drei</a>.
+                                    <br><br>
+                                    At the time, I used the simulated internet explorer to showcase my work for my
+                                    second semester.
                                 </p>
+                                <br><br>
+                                <div class="slideshow-container">
+                                    <div class="slide fade">
+                                        <video controls autoplay muted alt="Demo">
+                                            <source src="assets/img/projects/monitor-vid.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <p>Video showcase</p>
+                                    </div>
+                                </div>
+                                <div class="slideshow-controls">
+                                    <a class="prev"><img src="assets/img/chevron.svg" alt="Previous"></a>
+                                    <div class="dot-container"></div>
+                                    <a class="next"><img src="assets/img/chevron.svg" alt="Next"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
