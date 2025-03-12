@@ -215,10 +215,30 @@ nav ul li a,
     width: 50%;
 }
 
-.portfolio .portfolio-text {
+.portfolio-text h1 {
     font-family: 'Titania';
     font-size: 7vw;
     color: var(--purple);
+    font-weight: 400;
+}
+
+.portfolio-subtext {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.dotted-line {
+    border: none;
+    border-top: 3px dashed var(--white);
+    flex: 1;
+}
+
+.portfolio-subtext p {
+    font-family: 'VCR-OSD-Mono';
+    font-size: 1rem;
+    color: var(--white);
 }
 
 .main nav {
