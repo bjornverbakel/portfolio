@@ -293,28 +293,28 @@ nav ul {
     border: solid 2px var(--black);
 }
 
-.exp-container {
+.exp-container, .socials {
     display: flex;
     gap: 2vw;
     flex-wrap: wrap;
 }
 
-.exp {
+.exp, .social-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.exp img {
-    height: 80px;
+.exp img, .social-btn img {
+    height: 60px;
     width: auto;
     object-fit: contain;
 }
 
-.exp-label {
+.exp-label, .social-btn .soc-label {
     font-family: 'Martian-Mono';
-    font-size: 1rem;
+    font-size: .8rem;
     font-weight: 700;
     color: var(--black);
     text-align: center;
@@ -407,7 +407,8 @@ nav ul {
     right: 0;
 }
 
-.next img, .prev img {
+.next img,
+.prev img {
     width: 30px;
     height: 30px;
 }
@@ -465,4 +466,38 @@ nav ul {
     to {
         opacity: 1
     }
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style-type: circle;
+}
+
+.contact-details li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.contact-details li img {
+    width: 1.5rem;
+    height: auto;
+}
+
+.socials {
+    padding: 20px 0;
+}
+
+.socials a {
+    text-decoration: none;
+}
+
+.social-btn img {
+    transition: transform 0.3s ease;
+}
+ 
+.social-btn:hover>img {
+    transform: scale(1.1);
 }
