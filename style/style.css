@@ -27,6 +27,12 @@ html {
     scroll-behavior: smooth;
 }
 
+header,
+main,
+footer {
+    display: contents;
+}
+
 p {
     font-family: 'Martian-Mono';
     font-size: 1rem;
@@ -68,13 +74,14 @@ video {
     height: auto;
 }
 
+.content,
 section:not(#hero) {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-.content-text {
+.content .content-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -256,12 +263,6 @@ nav ul {
     gap: 5vh;
 }
 
-@media (max-width: 800px) {
-    .main ul {
-        font-size: 2rem;
-    }
-}
-
 .main nav ul li a {
     font-family: 'VCR-OSD-Mono';
     font-size: 1.5rem;
@@ -281,7 +282,31 @@ nav ul {
     gap: 80px;
 }
 
+.name .mobile,
+.top .mobile {
+    display: none;
+}
+
 @media (max-width: 800px) {
+
+    #hero .name img,
+    #hero .top img {
+        margin: -0.5px 0 0 0;
+    }
+
+    #hero .name img:not(.mobile),
+    #hero .top img:not(.mobile) {
+        display: none;
+    }
+
+    .name .mobile,
+    .top .mobile {
+        display: block;
+    }
+
+    .portfolio {
+        display: none;
+    }
 
     #hero,
     #content {
@@ -313,26 +338,30 @@ nav ul {
     border: solid 2px var(--black);
 }
 
-.exp-container, .socials {
+.exp-container,
+.socials {
     display: flex;
     gap: 2vw;
     flex-wrap: wrap;
 }
 
-.exp, .social-btn {
+.exp,
+.social-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.exp img, .social-btn img {
+.exp img,
+.social-btn img {
     height: 60px;
     width: auto;
     object-fit: contain;
 }
 
-.exp-label, .social-btn .soc-label {
+.exp-label,
+.social-btn .soc-label {
     font-family: 'Martian-Mono';
     font-size: .8rem;
     font-weight: 700;
@@ -347,6 +376,12 @@ nav ul {
 }
 
 .project-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 1px var(--black);
+}
+
+article.project-container {
     display: flex;
     flex-direction: column;
     border-bottom: solid 1px var(--black);
@@ -409,6 +444,7 @@ nav ul {
     display: flex;
     justify-content: center;
     flex-direction: column;
+
 }
 
 .prev,
@@ -441,6 +477,13 @@ nav ul {
     text-transform: uppercase;
     padding-top: 10px;
     text-align: center;
+    font-size: .8rem;
+}
+
+.slide img,
+.slide video {
+    border-radius: 30px;
+    border: 2px solid var(--black);
 }
 
 .slideshow-controls {
@@ -517,7 +560,7 @@ nav ul {
 .social-btn img {
     transition: transform 0.3s ease;
 }
- 
+
 .social-btn:hover>img {
     transform: scale(1.1);
 }

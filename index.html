@@ -14,43 +14,47 @@
 
 <body>
     <div id="custom-cursor"></div>
-    <section id="hero">
-        <div class="top-l"></div>
-        <div class="top">
-            <!-- This image is not visible and only to set the row height equal -->
-            <img src="assets/img/name.svg" alt="Name">
-        </div>
-        <div class="top-r"></div>
-        <div class="name-l"></div>
-        <div class="name">
-            <img src="assets/img/name.svg" alt="Name">
-        </div>
-        <div class="name-r"></div>
-        <div class="side-l"></div>
-        <div class="main">
-            <div class="portfolio">
-                <img src="assets/img/star-lines.svg" alt="Graphic">
-                <div class="portfolio-text">
-                    <h1>Portfolio</h1>
-                    <div class="portfolio-subtext">
-                        <p>FRONT-END</p>
-                        <div class="dotted-line"></div>
-                        <p>WEBDEV</p>
-                    </div>
-
-                </div>
+    <header>
+        <section id="hero">
+            <div class="top-l"></div>
+            <div class="top">
+                <!-- This image is not visible and only to set the row height equal -->
+                <img src="assets/img/name.svg" alt="Name">
+                <img class="mobile" src="assets/img/name-mobile.svg" alt="Name">
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#info">Info</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="side-r"></div>
-    </section>
-    <div id="content">
+            <div class="top-r"></div>
+            <div class="name-l"></div>
+            <div class="name">
+                <img src="assets/img/name.svg" alt="Name">
+                <img class="mobile" src="assets/img/name-mobile.svg" alt="Name">
+            </div>
+            <div class="name-r"></div>
+            <div class="side-l"></div>
+            <div class="main">
+                <div class="portfolio">
+                    <img src="assets/img/star-lines.svg" alt="Graphic">
+                    <div class="portfolio-text">
+                        <h1>Portfolio</h1>
+                        <div class="portfolio-subtext">
+                            <p>FRONT-END</p>
+                            <div class="dotted-line"></div>
+                            <p>WEBDEV</p>
+                        </div>
+
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#info">Info</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="side-r"></div>
+        </section>
+    </header>
+    <main id="content">
         <div class="side-l"></div>
         <div class="main">
             <section id="info">
@@ -58,41 +62,62 @@
                     <div class="header-container">0</div>
                     <h1>Info</h1>
                 </div>
-                <div class="content-text">
-                    <h2>About me</h2>
-                    <p>Hello! My name is Bjorn Verbakel. I am an 18-year-old student from the Netherlands studying ICT &
-                        Media design at Fontys Eindhoven. I am mainly focussed and interested in front-end web
-                        development.
-                    </p>
-                    <h2>Experience with</h2>
-                    <div class="exp-container">
-                        <div class="exp">
-                            <img src="assets/img/html.svg" alt="HTML">
-                            <p class="exp-label">HTML</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/css.svg" alt="HTML">
-                            <p class="exp-label">CSS</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/js.svg" alt="HTML">
-                            <p class="exp-label">JavaScript</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/php.svg" alt="HTML">
-                            <p class="exp-label">PHP</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/node.svg" alt="HTML">
-                            <p class="exp-label">Node.js</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/blender.svg" alt="HTML">
-                            <p class="exp-label">Blender</p>
-                        </div>
-                        <div class="exp">
-                            <img src="assets/img/figma.svg" alt="HTML">
-                            <p class="exp-label">Figma</p>
+                <div class="content">
+                    <div class="content-section">
+                        <h2>About me</h2>
+                        <p>I am a driven HBO-ICT student at Fontys University of Applied Sciences in Eindhoven, with a
+                            focus
+                            on front-end development. My passion lies in building interactive and user-friendly web
+                            applications, and I focus on creating visually appealing and intuitive designs.
+                            <br><br>
+                            In addition to my front-end skills, I also have experience with back-end development (such
+                            as
+                            Node.js and PHP) and am familiar with UX/UI design principles. This broad knowledge enables
+                            me
+                            to not only build technically strong solutions but also to seamlessly collaborate on the
+                            entire
+                            user experience - from visual design to functional implementation.
+                        </p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Experience with</h2>
+                        <div class="exp-container">
+                            <div class="exp">
+                                <img src="assets/img/html.svg" alt="HTML">
+                                <p class="exp-label">HTML</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/css.svg" alt="HTML">
+                                <p class="exp-label">CSS</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/js.svg" alt="HTML">
+                                <p class="exp-label">JavaScript</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/node.svg" alt="HTML">
+                                <p class="exp-label">Node.js</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/php.svg" alt="HTML">
+                                <p class="exp-label">PHP</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/blender.svg" alt="HTML">
+                                <p class="exp-label">Blender</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/figma.svg" alt="HTML">
+                                <p class="exp-label">Figma</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/premiere.svg" alt="HTML">
+                                <p class="exp-label">Premiere Pro</p>
+                            </div>
+                            <div class="exp">
+                                <img src="assets/img/photoshop.svg" alt="HTML">
+                                <p class="exp-label">Photoshop</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -103,11 +128,11 @@
                     <h1>Projects</h1>
                 </div>
                 <div class="project-list">
-                    <div class="project-container">
+                    <article class="project-container">
                         <div class="project">
                             <div class="project-title-container">
                                 <h2>Het Hornemann Huis</h2>
-                                <p class="subtitle">Interactive choose-your-own-adventure video experience</p>
+                                <p class="subtitle">2025 | Interactive choose-your-own-adventure video experience</p>
                             </div>
                             <div class="expand-btn"><img src="assets/img/icon/chevron.svg" alt="expand-btn"></div>
                         </div>
@@ -125,6 +150,15 @@
                                     their phones, and see the results of the poll afterwards. The most voted answer
                                     decides what the next sequence will be, and what the eventual outcome of the story
                                     will be.
+                                    <br><br>
+                                    The project was made with a team of 3 people. I worked on the ideation, design and
+                                    development of the product. The website was made with HTML, CSS, JavaScript and PHP.
+                                    The real-time communication is done with WebSockets.
+                                    <br><br>
+                                    We also got the oppotunity to test the product live with a large audience, which was
+                                    a
+                                    great experience and gave us some valuable feedback that was used to improve the
+                                    product.
                                 </p>
                                 <br><br>
                                 <div class="slideshow-container">
@@ -159,12 +193,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-container">
+                    </article>
+                    <article class="project-container">
                         <div class="project">
                             <div class="project-title-container">
                                 <h2>Media studio website</h2>
-                                <p class="subtitle">Website with storytelling aspects</p>
+                                <p class="subtitle">2024 | Website with storytelling aspects</p>
                             </div>
                             <div class="expand-btn"><img src="assets/img/icon/chevron.svg" alt="expand-btn"></div>
                         </div>
@@ -175,7 +209,8 @@
                                     the preferred assignment we would like to work on for the rest of the semester.
                                     <br><br>
                                     The website features storytelling aspects, where the client is sketched as a sailor
-                                    lost at sea, and studio as a compass that guides them to their destination.
+                                    lost at sea, and studio as a compass that guides them to their destination. I worked
+                                    on the concepting, designing and development of the website.
                                 </p>
                                 <br><br>
                                 <div class="slideshow-container">
@@ -191,12 +226,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-container">
+                    </article>
+                    <article class="project-container">
                         <div class="project">
                             <div class="project-title-container">
                                 <h2>3D monitor & operating system</h2>
-                                <p class="subtitle">3D environment with interactable PC and operating system</p>
+                                <p class="subtitle">2024 | 3D environment with interactable PC and operating system</p>
                             </div>
                             <div class="expand-btn"><img src="assets/img/icon/chevron.svg" alt="expand-btn"></div>
                         </div>
@@ -231,7 +266,106 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
+                    <article class="project-container">
+                        <div class="project">
+                            <div class="project-title-container">
+                                <h2>Live solar panel dashboard</h2>
+                                <p class="subtitle">2024 | Dashboard for tracking of automatic solar panel cleaning
+                                    device</p>
+                            </div>
+                            <div class="expand-btn"><img src="assets/img/icon/chevron.svg" alt="expand-btn"></div>
+                        </div>
+                        <div class="project-details-wrapper">
+                            <div class="project-details">
+                                <p>This was my final project for the first semester. I made a dashboard for tracking the
+                                    performance of an automatic solar panel cleaning device. This was mostly aimed at
+                                    large solar panel fields in the desert
+                                    where the panels get dirty quickly and need to be cleaned often. The device was made
+                                    by
+                                    other team members, and I was tasked with creating a dashboard that could display
+                                    the
+                                    data that the device was collecting. The device was an Arduino that sent data to a
+                                    phpMyAdmin database. The dashboard was made with HTML, CSS, PHP and JavaScript.
+                                    <br><br>
+                                    After you login to your account you see the performance of your solar panels, and
+                                    when they were last cleaned. You can also see the statistics of the device itself.
+                                    The entire dashboard can also be filtered to only display the data of a specific
+                                    solar panel or group of panels.
+                                    <br><br>
+                                    I also designed a poster for the eventual presentation of the project.
+                                </p>
+                                <br><br>
+                                <div class="slideshow-container">
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/solair-pic1.png" alt="Demo">
+                                        <p>Home</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/solair-pic2.png" alt="Demo">
+                                        <p>Dashboard</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/solair-pic3.png" alt="Demo">
+                                        <p>Filter solar panel selection</p>
+                                    </div>
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/solair-pic4.png" alt="Demo">
+                                        <p>Poster</p>
+                                    </div>
+                                </div>
+                                <div class="slideshow-controls">
+                                    <a class="prev"><img src="assets/img/icon/chevron.svg" alt="Previous"></a>
+                                    <div class="dot-container"></div>
+                                    <a class="next"><img src="assets/img/icon/chevron.svg" alt="Next"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-container">
+                        <div class="project">
+                            <div class="project-title-container">
+                                <h2>EnergieHuis Slim Wonen</h2>
+                                <p class="subtitle">2023 | Miniature energy-efficient model home</p>
+                            </div>
+                            <div class="expand-btn"><img src="assets/img/icon/chevron.svg" alt="expand-btn"></div>
+                        </div>
+                        <div class="project-details-wrapper">
+                            <div class="project-details">
+                                <p>
+                                    I made a miniature energy-efficient model home for <a
+                                        href="https://energiehuisslimwonen.nl/">EnergieHuis Slim Wonen</a>, during my
+                                    exam year at highscool. Energiehuis provides people with advice on how to make their
+                                    homes more energy-efficient. The goal of this project was to make an visual aid for
+                                    the advisors to better explain the possibilities to their clients.
+
+                                    Together with another group member I had made a model of an example of an older home
+                                    lacking the energy-saving solutions and a home in which sustainability measures had
+                                    been taken. For example, the sustainable home had a heat pump, solar panels, good
+                                    insulation and a smart ventilation system.
+
+                                    This project was part of the Technasium, the educational direction that I was
+                                    following at the Dr. Knippenbergcollege. It would be entered into the <a
+                                        href="https://www.inespo.org/">INESPO Sustainability Olympiad</a> where it won
+                                    the first price. Following this we were also interviewed by the local news paper <a
+                                        href="https://www.helmondnu.nl/algemeen/algemeen/15331/eerste-prijs-inespo-voor-koen-tijn-en-bjorn-met-duurzame-mode">De
+                                        Loop</a>.
+                                </p>
+                                <br><br>
+                                <div class="slideshow-container">
+                                    <div class="slide fade">
+                                        <img src="assets/img/projects/energiehuis-pic1.jpg" alt="Demo">
+                                        <p>Heat pump model from another group member (left) and model home (right)</p>
+                                    </div>
+                                </div>
+                                <div class="slideshow-controls">
+                                    <a class="prev"><img src="assets/img/icon/chevron.svg" alt="Previous"></a>
+                                    <div class="dot-container"></div>
+                                    <a class="next"><img src="assets/img/icon/chevron.svg" alt="Next"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </section>
             <section id="contact">
@@ -240,13 +374,12 @@
                     <h1>Contact</h1>
                 </div>
                 <ul class="contact-details">
-                    <li><img src="assets/img/icon/chevron.svg" alt="Arrow"><img src="assets/img/icon/mail.svg"
-                            alt="Email">
-                        <p><a href="mailto:bjornverbak2006@gmail.com">bjornverbak2006@gmail.com</a></p>
+                    <li><img src="assets/img/icon/mail.svg" alt="Email">
+                        <p>Email <a href="mailto:bjorn.verbakel@student.fontys.nl">bjorn.verbakel@student.fontys.nl</a>
+                        </p>
                     </li>
-                    <li><img src="assets/img/icon/chevron.svg" alt="Arrow"><img src="assets/img/icon/phone.svg"
-                            alt="Phone">
-                        <p><a href="tel:+31651625191">+31 6 51625191</a></p>
+                    <li><img src="assets/img/icon/phone.svg" alt="Phone">
+                        <p>Phone <a href="tel:+31651625191">+31 6 51625191</a></p>
                     </li>
                 </ul>
                 <div>
@@ -268,7 +401,10 @@
         </div>
         <div class=" side-r">
         </div>
-    </div>
+    </main>
+    <footer>
+        <!-- Add any footer content here if needed -->
+    </footer>
 </body>
 
 </html>
