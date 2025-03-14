@@ -39,13 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     projects.forEach(project => {
         project.addEventListener('click', function () {
+            /*
             // Collapse any currently expanded item
             projects.forEach(item => {
                 if (item !== project) {
                     item.classList.remove('expanded');
                 }
             });
-
+            */
+           
             // Toggle the clicked item
             this.classList.toggle('expanded');
         });
