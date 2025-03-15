@@ -87,6 +87,22 @@ section:not(#hero) {
     gap: 20px;
 }
 
+.content-section .content-text {
+    display: block;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.portrait {
+    border: 1px solid var(--black);
+    border-radius: 100%;
+    float: right;
+    margin: 0 0 20px 20px;
+    width: 30%;
+    max-width: 250px;
+    min-width: 200px;
+}
+
 /*
 body, a {
     cursor: none;
@@ -358,7 +374,7 @@ article.project-container {
 }
 
 .project-container .expand-btn {
-    width: 40px;
+    min-width: 40px;
 }
 
 .project {
@@ -588,4 +604,32 @@ article.project-container {
     .social-btn img {
         height: 50px;
     }
+}
+
+@media (max-width: 450px) {
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    .project-title-container .subtitle {
+        display: none;
+    }
+
+    .project-title-container h2 {
+        font-size: 1rem;
+    }
+
+    .portrait {
+        float: none;
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .content-section .content-text {
+        display:flex;
+        gap: 20px;
+        flex-direction: column-reverse;
+    }
+
 }
