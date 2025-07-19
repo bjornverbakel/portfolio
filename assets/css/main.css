@@ -54,19 +54,48 @@ h6 {
   color: var(--white);
 }
 
-p, img {
+p {
   mix-blend-mode: difference;
   color: var(--white);
-  font-size: 4rem;
   font-family: "Mono Regular", sans-serif;
+  line-height: normal;
+}
+
+#app {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+aside {
+  max-width: 150px;
+  min-width: 50px;
+  width: 10%;
+  border-right: var(--white) 4px solid;
 }
 
 .backdrop {
   position: absolute;
-  top: 420px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: var(--black);
+  transition:
+    top 0.5s,
+    bottom 0.5s;
+}
 
-  background: var(--black);
+#logo {
+  width: -webkit-fill-available;
+  max-height: 300px;
+}
+
+nav {
+  font-size: 4rem;
+}
+
+.nav-btn {
+  cursor: pointer;
+  width: min-content;
 }
