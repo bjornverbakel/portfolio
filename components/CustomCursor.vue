@@ -8,7 +8,7 @@
         left: outerX + 'px',
         top: outerY + 'px',
       }"
-    />
+    ></div>
     <!-- Inner cursor -->
     <div
       class="custom-cursor-inner mix-blend-difference"
@@ -39,18 +39,22 @@ function handleMouseMove(e) {
   cursorY.value = e.clientY;
 }
 
-function handleBtnEnter() {
-  isHoveringBtn.value = true;
-}
-function handleBtnLeave() {
-  isHoveringBtn.value = false;
-}
-
 function handleMouseDown() {
   isClicking.value = true;
 }
 function handleMouseUp() {
   isClicking.value = false;
+}
+
+function handleMouseOver(e) {
+  if (e.target.classList?.contains("btn")) {
+    isHoveringBtn.value = true;
+  }
+}
+function handleMouseOut(e) {
+  if (e.target.classList?.contains("btn")) {
+    isHoveringBtn.value = false;
+  }
 }
 
 let animationFrame;
@@ -65,10 +69,8 @@ onMounted(() => {
   window.addEventListener("mousemove", handleMouseMove);
   window.addEventListener("mousedown", handleMouseDown);
   window.addEventListener("mouseup", handleMouseUp);
-  document.querySelectorAll(".btn").forEach((el) => {
-    el.addEventListener("mouseenter", handleBtnEnter);
-    el.addEventListener("mouseleave", handleBtnLeave);
-  });
+  document.addEventListener("mouseover", handleMouseOver);
+  document.addEventListener("mouseout", handleMouseOut);
   // Initialize outer cursor position
   outerX.value = cursorX.value;
   outerY.value = cursorY.value;
@@ -78,10 +80,8 @@ onUnmounted(() => {
   window.removeEventListener("mousemove", handleMouseMove);
   window.removeEventListener("mousedown", handleMouseDown);
   window.removeEventListener("mouseup", handleMouseUp);
-  document.querySelectorAll(".btn").forEach((el) => {
-    el.removeEventListener("mouseenter", handleBtnEnter);
-    el.removeEventListener("mouseleave", handleBtnLeave);
-  });
+  document.removeEventListener("mouseover", handleMouseOver);
+  document.removeEventListener("mouseout", handleMouseOut);
   cancelAnimationFrame(animationFrame);
 });
 </script>
@@ -114,7 +114,9 @@ onUnmounted(() => {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9998;
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
   background: transparent;
 }
 .custom-cursor-outer.hovering-btn {
