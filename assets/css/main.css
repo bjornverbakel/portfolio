@@ -65,6 +65,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+  cursor: none;
 }
 
 aside {
@@ -87,6 +88,8 @@ aside {
 }
 
 #logo {
+  -webkit-user-drag: none;
+
   width: -webkit-fill-available;
   max-height: 300px;
 }
@@ -96,6 +99,5 @@ nav {
 }
 
 .nav-btn {
-  cursor: pointer;
   width: min-content;
 }

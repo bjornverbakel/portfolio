@@ -30,9 +30,9 @@ onBeforeUnmount(() => {
 <template>
   <nav class="m-8 flex flex-col flex-grow" ref="navRef">
     <ul class="flex flex-col flex-grow gap-8">
-      <li><p class="nav-btn" @click="handleNavClick">About</p></li>
-      <li><p class="nav-btn" @click="handleNavClick">Projects</p></li>
-      <li><p class="nav-btn" @click="handleNavClick">Contact</p></li>
+      <li><p class="nav-btn btn" @click="handleNavClick">About</p></li>
+      <li><p class="nav-btn btn" @click="handleNavClick">Projects</p></li>
+      <li><p class="nav-btn btn" @click="handleNavClick">Contact</p></li>
     </ul>
   </nav>
 </template>

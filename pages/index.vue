@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Logo from '~/components/Logo.vue'
 import Nav from '~/components/Nav.vue'
 import Backdrop from '~/components/Backdrop.vue'
+import CustomCursor from '~/components/CustomCursor.vue'
 
 const logoHeight = ref(0)
 const navHeight = ref(0)
@@ -29,5 +30,6 @@ function handleNavClick() {
       <Logo @height="setLogoHeight" />
       <Nav @height="setNavHeight" @navClick="handleNavClick" />
     </main>
+    <CustomCursor />
   </div>
 </template>

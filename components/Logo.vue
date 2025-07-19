@@ -23,7 +23,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="logo" class="flex mix-blend-difference m-8" ref="logoRef">
-    <img src="/logo.svg" alt="Logo" />
+  <div id="logo" class="flex mix-blend-difference m-8 select-none" ref="logoRef">
+    <img draggable="false" src="/logo.svg" alt="Logo" />
   </div>
 </template>
