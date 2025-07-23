@@ -34,7 +34,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--white);
-  color: var(--black);
+  color: var(--white);
 }
 
 #__nuxt {
@@ -51,13 +51,11 @@ h5,
 h6 {
   font-family: "Mono Bold", sans-serif;
   mix-blend-mode: difference;
-  color: var(--white);
 }
 
 p {
   mix-blend-mode: difference;
-  color: var(--white);
-  font-family: "Mono Regular", sans-serif;
+  font-family: "DMMono Light", sans-serif;
   line-height: normal;
 }
 
@@ -68,7 +66,7 @@ p {
   cursor: none;
 }
 
-aside {
+#sidebar {
   max-width: 150px;
   min-width: 50px;
   width: 10%;
@@ -89,15 +87,13 @@ aside {
 
 #logo {
   -webkit-user-drag: none;
-
   width: -webkit-fill-available;
   max-height: 300px;
 }
 
-nav {
-  font-size: 4rem;
-}
-
 .nav-btn {
+  mix-blend-mode: difference;
+  line-height: normal;
   width: min-content;
+  font-family: "Mono Regular", sans-serif;
 }

@@ -1,25 +1,10 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-const logoRef = ref(null)
-const emit = defineEmits(['height'])
+import { ref } from "vue";
+import { useEmitHeight } from "../composables/useEmitHeight";
+const logoRef = ref(null);
+const emit = defineEmits(["height"]);
 
-function updateHeight() {
-  if (logoRef.value) {
-    const el = logoRef.value
-    const style = window.getComputedStyle(el)
-    const marginTop = parseInt(style.marginTop, 10)
-    const marginBottom = parseInt(style.marginBottom, 10)
-    emit('height', el.offsetHeight + marginTop + marginBottom)
-  }
-}
-
-onMounted(() => {
-  updateHeight()
-  window.addEventListener('resize', updateHeight)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateHeight)
-})
+useEmitHeight(logoRef, emit, "height");
 </script>
 
 <template>
