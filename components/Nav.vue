@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from "vue";
 import { useEmitHeight } from "../composables/useEmitHeight";
+
+const props = defineProps({
+  activeSection: String
+});
+
 const navRef = ref(null);
 const emit = defineEmits(["height", "navClick"]);
 
