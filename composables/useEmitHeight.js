@@ -41,6 +41,7 @@ export function useEmitHeight(refEl, emit, eventName = "height") {
     
     window.addEventListener("resize", updateHeight);
   });
+  // Clean up listeners and observer on component unmount
   onBeforeUnmount(() => {
     window.removeEventListener("resize", updateHeight);
     window.removeEventListener("load", updateHeight);

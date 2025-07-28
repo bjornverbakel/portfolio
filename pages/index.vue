@@ -1,5 +1,6 @@
+<
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import Logo from "~/components/Logo.vue";
 import Nav from "~/components/Nav.vue";
 import Backdrop from "~/components/Backdrop.vue";
@@ -9,32 +10,43 @@ import Projects from "~/components/Projects.vue";
 import Contact from "~/components/Contact.vue";
 import { Transition } from "vue";
 
-const logoHeight = ref(0);
-const navHeight = ref(0);
-const backdropState = ref("logo");
+const headerHeight = ref(0);
+const contentHeight = ref(0);
+const backdropState = ref("header");
 const activeSection = ref(null);
 
-function setLogoHeight(h) {
-  if (activeSection.value === null) {
-    logoHeight.value = h;
-  }
+function setElementHeights(h) {
+  headerHeight.value = h;
+  // Calculate content height as window height minus header height
+  contentHeight.value = window.innerHeight - headerHeight.value;
 }
-function setNavHeight(h) {
-  if (activeSection.value === null) {
-    navHeight.value = h;
-  }
-}
+
 function handleNavClick(section) {
-  backdropState.value = "nav";
+  backdropState.value = "content";
   activeSection.value = section.toLowerCase();
 }
+
+onMounted(() => {
+  window.addEventListener("resize", () => {
+    contentHeight.value = window.innerHeight - headerHeight.value;
+  });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", () => {
+    contentHeight.value = window.innerHeight - headerHeight.value;
+  });
+});
 </script>
 
 <template>
-  <div id="app" class="grid grid-cols-[auto_1fr] min-h-screen cursor-none">
+  <div
+    id="app"
+    class="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen cursor-none"
+  >
     <Backdrop
-      :logoHeight="logoHeight"
-      :navHeight="navHeight"
+      :headerHeight="headerHeight"
+      :contentHeight="contentHeight"
       :state="backdropState"
     />
 
@@ -42,31 +54,29 @@ function handleNavClick(section) {
       <div class="line"></div>
     </div>
 
-    <div class="flex flex-col min-h-screen">
-      <header class="flex flex-row">
-        <Logo @height="setLogoHeight" />
-      </header>
+    <header class="flex flex-row sticky top-0 z-10 mix-blend-difference">
+      <Logo @height="setElementHeights" />
+    </header>
 
-      <main class="flex flex-row flex-grow">
-        <Nav @height="setNavHeight" @navClick="handleNavClick" />
-        <article class="m-8 w-full">
-          <Transition name="fade" mode="out-in">
-            <component
-              :is="
-                activeSection === 'about'
-                  ? About
-                  : activeSection === 'projects'
-                    ? Projects
-                    : activeSection === 'contact'
-                      ? Contact
-                      : 'div'
-              "
-              :key="activeSection"
-            />
-          </Transition>
-        </article>
-      </main>
-    </div>
+    <main class="flex flex-row">
+      <Nav @navClick="handleNavClick" />
+      <article class="m-8 w-full">
+        <Transition name="fade" mode="out-in">
+          <component
+            :is="
+              activeSection === 'about'
+                ? About
+                : activeSection === 'projects'
+                  ? Projects
+                  : activeSection === 'contact'
+                    ? Contact
+                    : 'div'
+            "
+            :key="activeSection"
+          />
+        </Transition>
+      </article>
+    </main>
 
     <CustomCursor />
   </div>

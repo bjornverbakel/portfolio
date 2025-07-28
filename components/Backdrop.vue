@@ -1,16 +1,16 @@
 <script setup>
 defineProps({
-  logoHeight: Number,
-  navHeight: Number,
+  headerHeight: Number,
+  contentHeight: Number,
   state: String
 })
 </script>
 
 <template>
   <div
-    class="backdrop fixed"
-    :style="state === 'logo'
-      ? { top: logoHeight + 'px', bottom: '0px' }
-      : { top: '0px', bottom: navHeight + 'px' }"
+    class="backdrop"
+    :style="state === 'header'
+      ? { top: headerHeight + 'px', bottom: '0px' }
+      : { top: '0px', bottom: contentHeight + 'px' }"
   ></div>
 </template>

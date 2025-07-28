@@ -8,7 +8,7 @@ useEmitHeight(logoRef, emit, "height");
 </script>
 
 <template>
-  <div id="logo" class="flex mix-blend-difference m-8 select-none" ref="logoRef">
+  <div id="logo" class="flex m-8 z-10" ref="logoRef">
     <img draggable="false" src="/logo.svg" alt="Logo" />
   </div>
 </template>

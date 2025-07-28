@@ -2,7 +2,7 @@
   <div>
     <!-- Outer cursor (border) -->
     <div
-      class="custom-cursor-outer mix-blend-difference"
+      class="custom-cursor-outer"
       :class="{ 'hovering-btn': isHoveringBtn, clicking: isClicking }"
       :style="{
         left: outerX + 'px',
@@ -11,7 +11,7 @@
     ></div>
     <!-- Inner cursor -->
     <div
-      class="custom-cursor-inner mix-blend-difference"
+      class="custom-cursor-inner"
       :class="{
         'hovering-btn': isHoveringBtn,
         clicking: isClicking,
@@ -87,15 +87,20 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.custom-cursor-inner {
+.custom-cursor-inner,
+.custom-cursor-outer {
   position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.custom-cursor-inner {
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: var(--white);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
   transition: transform 0.2s;
 }
 .custom-cursor-inner.hovering-btn {
@@ -106,14 +111,9 @@ onUnmounted(() => {
 }
 
 .custom-cursor-outer {
-  position: fixed;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
   border: 2px solid var(--white);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9998;
   transition:
     transform 0.2s,
     border-color 0.2s;
