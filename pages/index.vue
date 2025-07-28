@@ -14,6 +14,7 @@ const headerHeight = ref(0);
 const contentHeight = ref(0);
 const backdropState = ref("header");
 const activeSection = ref(null);
+const isLogoScrolling = ref(false); // Track logo scrolling state
 
 function setElementHeights(h) {
   headerHeight.value = h;
@@ -24,6 +25,10 @@ function setElementHeights(h) {
 function handleNavClick(section) {
   backdropState.value = "content";
   activeSection.value = section.toLowerCase();
+}
+
+function handleLogoScrolling(scrolling) {
+  isLogoScrolling.value = scrolling;
 }
 
 onMounted(() => {
@@ -48,6 +53,7 @@ onBeforeUnmount(() => {
       :headerHeight="headerHeight"
       :contentHeight="contentHeight"
       :state="backdropState"
+      :isScrolling="isLogoScrolling"
     />
 
     <div id="sidebar" class="flex flex-col row-span-2 mix-blend-difference">
@@ -55,7 +61,7 @@ onBeforeUnmount(() => {
     </div>
 
     <header class="flex flex-row sticky top-0 z-10 mix-blend-difference">
-      <Logo @height="setElementHeights" />
+      <Logo @height="setElementHeights" @scrolling="handleLogoScrolling" />
     </header>
 
     <main class="flex flex-row">

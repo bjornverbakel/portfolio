@@ -82,6 +82,10 @@ p {
     bottom 0.5s;
 }
 
+.backdrop.no-transition {
+  transition: none;
+}
+
 #logo {
   width: -webkit-fill-available;
   max-height: 300px;
