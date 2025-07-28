@@ -5,6 +5,18 @@ export default defineNuxtConfig({
   
   css: ['@/assets/css/main.css'],
 
+  app: {
+    head: {
+      link: [
+        { rel: 'preload', href: '/fonts/DMMono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/DMMono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/Mono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/Mono-Bold.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/Mono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' }
+      ]
+    }
+  },
+
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
