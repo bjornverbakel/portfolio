@@ -59,22 +59,15 @@ p {
   line-height: normal;
 }
 
-#app {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  cursor: none;
-}
-
 #sidebar {
   max-width: 150px;
   min-width: 50px;
-  width: 10%;
+  width: 5vw;
   border-right: var(--white) 4px solid;
 }
 
 .backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

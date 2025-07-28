@@ -8,6 +8,7 @@ export function useEmitHeight(refEl, emit, eventName = "height") {
       const marginTop = parseInt(style.marginTop, 10);
       const marginBottom = parseInt(style.marginBottom, 10);
       emit(eventName, el.offsetHeight + marginTop + marginBottom);
+      console.log(`Emitted ${eventName}:`, el.offsetHeight + marginTop + marginBottom);
     }
   }
 

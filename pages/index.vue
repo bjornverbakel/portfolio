@@ -15,10 +15,14 @@ const backdropState = ref("logo");
 const activeSection = ref(null);
 
 function setLogoHeight(h) {
-  logoHeight.value = h;
+  if (activeSection.value === null) {
+    logoHeight.value = h;
+  }
 }
 function setNavHeight(h) {
-  navHeight.value = h;
+  if (activeSection.value === null) {
+    navHeight.value = h;
+  }
 }
 function handleNavClick(section) {
   backdropState.value = "nav";
@@ -27,18 +31,23 @@ function handleNavClick(section) {
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" class="grid grid-cols-[auto_1fr] min-h-screen cursor-none">
     <Backdrop
       :logoHeight="logoHeight"
       :navHeight="navHeight"
       :state="backdropState"
     />
-    <div id="sidebar" class="flex flex-col mix-blend-difference">
+
+    <div id="sidebar" class="flex flex-col row-span-2 mix-blend-difference">
       <div class="line"></div>
     </div>
-    <main class="flex flex-col flex-1">
-      <Logo @height="setLogoHeight" />
-      <div class="flex flex-row flex-grow">
+
+    <div class="flex flex-col min-h-screen">
+      <header class="flex flex-row">
+        <Logo @height="setLogoHeight" />
+      </header>
+
+      <main class="flex flex-row flex-grow">
         <Nav @height="setNavHeight" @navClick="handleNavClick" />
         <article class="m-8 w-full">
           <Transition name="fade" mode="out-in">
@@ -56,8 +65,9 @@ function handleNavClick(section) {
             />
           </Transition>
         </article>
-      </div>
-    </main>
+      </main>
+    </div>
+
     <CustomCursor />
   </div>
 </template>
