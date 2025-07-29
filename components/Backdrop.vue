@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div
     class="backdrop"
-    :class="{ 'no-transition': isScrolling }"
+    :class="{ '': isScrolling }"
     :style="state === 'header'
       ? { top: headerHeight + 'px', bottom: '0px' }
       : { top: '0px', bottom: contentHeight + 'px' }"

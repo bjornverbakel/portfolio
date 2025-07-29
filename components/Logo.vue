@@ -3,8 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import { useEmitHeight } from "../composables/useEmitHeight";
 
 const logoRef = ref(null);
-const logoHeight = ref(null); // Actual height in pixels
-const baseHeight = ref(null); // Store the original height
+const isScrolled = ref(false); // Track if user has scrolled past threshold
 const isScrolling = ref(false); // Track if user is scrolling
 const scrollTimeout = ref(null); // Timeout for scroll end detection
 const emit = defineEmits(["height", "scrolling", "logoClick"]);
@@ -17,10 +16,8 @@ function handleLogoClick() {
   emit("logoClick");
 }
 
-// Handle scroll events to change logo height
+// Handle scroll events to change logo state
 function handleScroll() {
-  if (!baseHeight.value) return;
-  
   // Set scrolling state and emit it
   if (!isScrolling.value) {
     isScrolling.value = true;
@@ -39,32 +36,16 @@ function handleScroll() {
   }, 150); // 150ms delay after scroll stops
   
   const scrollY = window.scrollY;
-  const maxScroll = 150; // Adjust this value to control how quickly the logo shrinks
+  const scrollThreshold = 100; // Threshold for switching states
   
-  // Calculate height: full height at top, 50% height when fully scrolled
-  const minHeightRatio = 0.4;
-  const maxHeightRatio = 1;
-  const heightRatio = Math.max(minHeightRatio, maxHeightRatio - (scrollY / maxScroll) * (maxHeightRatio - minHeightRatio));
+  // Switch between two states based on scroll position
+  isScrolled.value = scrollY > scrollThreshold;
   
-  logoHeight.value = Math.round(baseHeight.value * heightRatio);
-  
-  // Trigger height recalculation after height change
+  // Trigger height recalculation after state change
   setTimeout(updateHeight, 0);
 }
 
 onMounted(() => {
-  // Wait for the logo to be rendered and get its natural height
-  setTimeout(() => {
-    if (logoRef.value) {
-      const img = logoRef.value.querySelector('img');
-      if (img) {
-        // Store the original height
-        baseHeight.value = img.offsetHeight;
-        logoHeight.value = baseHeight.value;
-      }
-    }
-  }, 100);
-  
   window.addEventListener("scroll", handleScroll);
 });
 
@@ -82,10 +63,8 @@ onBeforeUnmount(() => {
       draggable="false" 
       src="/logo.svg" 
       alt="Logo" 
-      :style="{ 
-        height: logoHeight ? `${logoHeight}px` : 'auto',
-        transition: 'height 0.2s ease-out'
-      }"
+      :class="{ 'h-[150px]': isScrolled, 'h-[300px]': !isScrolled }"
+      class="transition-all duration-500 ease"
       @click="handleLogoClick"
     />
   </div>
