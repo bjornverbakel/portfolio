@@ -47,12 +47,12 @@ function handleMouseUp() {
 }
 
 function handleMouseOver(e) {
-  if (e.target.classList?.contains("btn")) {
+  if (e.target.classList?.contains("btn") || e.target.closest(".btn")) {
     isHoveringBtn.value = true;
   }
 }
 function handleMouseOut(e) {
-  if (e.target.classList?.contains("btn")) {
+  if (e.target.classList?.contains("btn") || e.target.closest(".btn")) {
     isHoveringBtn.value = false;
   }
 }
