@@ -96,13 +96,3 @@ header {
   backdrop-filter: blur(5px); */
 }
 
-nav {
-  mix-blend-mode: difference;
-}
-
-.nav-btn {
-  mix-blend-mode: difference;
-  line-height: normal;
-  width: min-content;
-  font-family: "Mono Regular", sans-serif;
-}

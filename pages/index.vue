@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
     </header>
 
     <main class="flex flex-row">
-      <Nav @navClick="handleNavClick" />
+      <Nav @navClick="handleNavClick" :activeSection="activeSection" />
       <article class="m-8 w-60% ml-auto w-[60%] text-justify">
         <Transition name="fade" mode="out-in">
           <component

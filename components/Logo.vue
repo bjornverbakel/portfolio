@@ -42,7 +42,7 @@ function handleScroll() {
   const maxScroll = 150; // Adjust this value to control how quickly the logo shrinks
   
   // Calculate height: full height at top, 50% height when fully scrolled
-  const minHeightRatio = 0.2;
+  const minHeightRatio = 0.4;
   const maxHeightRatio = 1;
   const heightRatio = Math.max(minHeightRatio, maxHeightRatio - (scrollY / maxScroll) * (maxHeightRatio - minHeightRatio));
   
