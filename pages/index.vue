@@ -15,6 +15,7 @@ const contentHeight = ref(0);
 const backdropState = ref("header");
 const activeSection = ref(null);
 const isLogoScrolling = ref(false); // Track logo scrolling state
+const logoRef = ref(null); // Reference to the Logo component
 
 function setElementHeights(h) {
   headerHeight.value = h;
@@ -29,6 +30,31 @@ function handleNavClick(section) {
 
 function handleLogoScrolling(scrolling) {
   isLogoScrolling.value = scrolling;
+}
+
+function handleLogoClick() {
+  // First, scroll to top smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // Wait for scroll to complete, then reset state
+  // Monitor scroll position to know when we've reached the top
+  function checkScrollComplete() {
+    if (window.scrollY <= 5) {
+      // Allow small tolerance
+      // Reset to initial state after reaching top
+      backdropState.value = "header";
+      activeSection.value = null;
+    } else {
+      // Continue checking if we haven't reached the top yet
+      requestAnimationFrame(checkScrollComplete);
+    }
+  }
+
+  // Start checking scroll position
+  requestAnimationFrame(checkScrollComplete);
 }
 
 onMounted(() => {
@@ -61,12 +87,17 @@ onBeforeUnmount(() => {
     </div>
 
     <header class="flex flex-row sticky top-0 z-10 mix-blend-difference">
-      <Logo @height="setElementHeights" @scrolling="handleLogoScrolling" />
+      <Logo
+        ref="logoRef"
+        @height="setElementHeights"
+        @scrolling="handleLogoScrolling"
+        @logoClick="handleLogoClick"
+      />
     </header>
 
     <main class="flex flex-row">
       <Nav @navClick="handleNavClick" />
-      <article class="m-8 w-full">
+      <article class="m-8 w-60% ml-auto w-[60%] text-justify">
         <Transition name="fade" mode="out-in">
           <component
             :is="
@@ -90,10 +121,14 @@ onBeforeUnmount(() => {
 
 <style>
 /* COLOR instead of OPACITY for fade due to mix blend mode */
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active {
   transition: color 0.2s ease-in;
 }
+
+.fade-leave-active {
+  transition: color 0.2s ease-out;
+}
+
 .fade-enter-from,
 .fade-leave-to {
   color: var(--black);

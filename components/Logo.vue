@@ -7,10 +7,15 @@ const logoHeight = ref(null); // Actual height in pixels
 const baseHeight = ref(null); // Store the original height
 const isScrolling = ref(false); // Track if user is scrolling
 const scrollTimeout = ref(null); // Timeout for scroll end detection
-const emit = defineEmits(["height", "scrolling"]);
+const emit = defineEmits(["height", "scrolling", "logoClick"]);
 
 // Use the height emitter composable
 const { updateHeight } = useEmitHeight(logoRef, emit, "height");
+
+// Handle logo click
+function handleLogoClick() {
+  emit("logoClick");
+}
 
 // Handle scroll events to change logo height
 function handleScroll() {
@@ -34,7 +39,7 @@ function handleScroll() {
   }, 150); // 150ms delay after scroll stops
   
   const scrollY = window.scrollY;
-  const maxScroll = 200; // Adjust this value to control how quickly the logo shrinks
+  const maxScroll = 150; // Adjust this value to control how quickly the logo shrinks
   
   // Calculate height: full height at top, 50% height when fully scrolled
   const minHeightRatio = 0.2;
@@ -80,7 +85,8 @@ onBeforeUnmount(() => {
       :style="{ 
         height: logoHeight ? `${logoHeight}px` : 'auto',
         transition: 'height 0.2s ease-out'
-      }" 
+      }"
+      @click="handleLogoClick"
     />
   </div>
 </template>

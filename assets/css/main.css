@@ -96,6 +96,10 @@ header {
   backdrop-filter: blur(5px); */
 }
 
+nav {
+  mix-blend-mode: difference;
+}
+
 .nav-btn {
   mix-blend-mode: difference;
   line-height: normal;
