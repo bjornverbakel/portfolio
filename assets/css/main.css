@@ -87,6 +87,8 @@ p {
 }
 
 #logo {
+  -webkit-user-select: none;
+  user-select: none;
   width: -webkit-fill-available;
   max-height: 300px;
 }

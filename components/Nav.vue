@@ -40,6 +40,7 @@ function handleNavClick(section) {
 
 <style scoped>
 .nav-btn {
+  user-select: none;
   mix-blend-mode: difference;
   line-height: normal;
   width: min-content;

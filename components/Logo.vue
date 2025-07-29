@@ -4,7 +4,6 @@ import { useEmitHeight } from "../composables/useEmitHeight";
 
 const logoRef = ref(null);
 const isScrolled = ref(false); // Track if user has scrolled past threshold
-const isScrolling = ref(false); // Track if user is scrolling
 const scrollTimeout = ref(null); // Timeout for scroll end detection
 const emit = defineEmits(["height", "scrolling", "logoClick"]);
 
@@ -18,12 +17,6 @@ function handleLogoClick() {
 
 // Handle scroll events to change logo state
 function handleScroll() {
-  // Set scrolling state and emit it
-  if (!isScrolling.value) {
-    isScrolling.value = true;
-    emit("scrolling", true);
-  }
-  
   // Clear existing timeout and set new one
   if (scrollTimeout.value) {
     clearTimeout(scrollTimeout.value);
@@ -31,7 +24,6 @@ function handleScroll() {
   
   // Set timeout to detect scroll end
   scrollTimeout.value = setTimeout(() => {
-    isScrolling.value = false;
     emit("scrolling", false);
   }, 150); // 150ms delay after scroll stops
   
