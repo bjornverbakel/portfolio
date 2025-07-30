@@ -28,7 +28,7 @@ function handleScroll() {
   }, 150); // 150ms delay after scroll stops
   
   const scrollY = window.scrollY;
-  const scrollThreshold = 100; // Threshold for switching states
+  const scrollThreshold = 50; // Threshold for switching states
   
   // Switch between two states based on scroll position
   isScrolled.value = scrollY > scrollThreshold;
@@ -55,8 +55,11 @@ onBeforeUnmount(() => {
       draggable="false" 
       src="/logo.svg" 
       alt="Logo" 
-      :class="{ 'h-[150px]': isScrolled, 'h-[300px]': !isScrolled }"
-      class="transition-all duration-500 ease"
+      :class="{ 
+        'h-[50px] md:h-[100px]': isScrolled, 
+        'h-[300px]': !isScrolled 
+      }"
+      class="transition-all duration-500 ease btn"
       @click="handleLogoClick"
     />
   </div>
