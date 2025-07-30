@@ -8,6 +8,8 @@ import CustomCursor from "~/components/CustomCursor.vue";
 import About from "~/components/About.vue";
 import Projects from "~/components/Projects.vue";
 import Contact from "~/components/Contact.vue";
+import MobileMenu from "~/components/MobileMenu.vue";
+import HamburgerMenuIcon from "~/components/HamburgerMenuIcon.vue";
 import { Transition } from "vue";
 
 const headerHeight = ref(0);
@@ -16,6 +18,7 @@ const backdropState = ref("header");
 const activeSection = ref(null);
 const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
+const isMobileMenuOpen = ref(false); // Track mobile menu state
 
 function setElementHeights(h) {
   headerHeight.value = h;
@@ -57,6 +60,14 @@ function handleLogoClick() {
   requestAnimationFrame(checkScrollComplete);
 }
 
+function closeMobileMenu() {
+  isMobileMenuOpen.value = false;
+}
+
+function toggleMobileMenu() {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+}
+
 onMounted(() => {
   window.addEventListener("resize", () => {
     contentHeight.value = window.innerHeight - headerHeight.value;
@@ -82,7 +93,10 @@ onBeforeUnmount(() => {
       :isScrolling="isLogoScrolling"
     />
 
-    <div id="sidebar" class="flex flex-col row-span-2 mix-blend-difference">
+    <div
+      id="sidebar"
+      class="flex justify-center flex-col row-span-2 mix-blend-difference"
+    >
       <div class="line"></div>
     </div>
 
@@ -114,6 +128,13 @@ onBeforeUnmount(() => {
         </Transition>
       </article>
     </main>
+
+    <HamburgerMenuIcon 
+      :isMobileMenuOpen="isMobileMenuOpen"
+      @toggle="toggleMobileMenu"
+    />
+
+    <MobileMenu :isOpen="isMobileMenuOpen" @close="closeMobileMenu" />
 
     <CustomCursor />
   </div>

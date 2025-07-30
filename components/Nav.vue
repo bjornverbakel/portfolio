@@ -11,7 +11,7 @@ function handleNavClick(section) {
 </script>
 
 <template>
-  <nav class="m-8 flex flex-col flex-grow text-6xl fixed mix-blend-difference">
+  <nav class="m-8 flex flex-col flex-grow fixed mix-blend-difference">
     <ul class="flex flex-col flex-grow gap-8">
       <li
         class="nav-btn btn"
