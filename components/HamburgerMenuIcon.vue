@@ -16,7 +16,7 @@ function toggleMobileMenu() {
 <template>
   <button
     @click="toggleMobileMenu"
-    class="fixed z-50 md:hidden mix-blend-difference w-fit aspect-square p-8"
+    class="fixed z-50 top-8 right-8 sm:top-8 sm:left-8 sm:right-auto md:hidden mix-blend-difference w-fit aspect-square p-2"
     aria-label="Toggle mobile menu"
   >
     <div class="w-8 h-8 flex flex-col justify-center space-y-1.5">

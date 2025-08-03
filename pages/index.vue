@@ -19,6 +19,7 @@ const activeSection = ref(null);
 const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
 const isMobileMenuOpen = ref(false); // Track mobile menu state
+const isDesktop = ref(false); // Track if screen is desktop size
 
 function setElementHeights(h) {
   headerHeight.value = h;
@@ -68,15 +69,22 @@ function toggleMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 }
 
+function checkScreenSize() {
+  isDesktop.value = window.innerWidth >= 768; // md breakpoint
+}
+
 onMounted(() => {
+  checkScreenSize();
   window.addEventListener("resize", () => {
     contentHeight.value = window.innerHeight - headerHeight.value;
+    checkScreenSize();
   });
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", () => {
     contentHeight.value = window.innerHeight - headerHeight.value;
+    checkScreenSize();
   });
 });
 </script>
@@ -84,7 +92,7 @@ onBeforeUnmount(() => {
 <template>
   <div
     id="app"
-    class="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen cursor-none"
+    class="grid grid-cols-1 sm:grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen cursor-none"
   >
     <Backdrop
       :headerHeight="headerHeight"
@@ -95,7 +103,7 @@ onBeforeUnmount(() => {
 
     <div
       id="sidebar"
-      class="flex justify-center flex-col row-span-2 mix-blend-difference"
+      class="justify-center flex-col row-span-2 mix-blend-difference hidden sm:flex"
     >
       <div class="line"></div>
     </div>
@@ -110,7 +118,13 @@ onBeforeUnmount(() => {
     </header>
 
     <main class="flex flex-row">
-      <Nav @navClick="handleNavClick" :activeSection="activeSection" />
+      <Transition name="fade" mode="out-in">
+        <Nav 
+          v-show="backdropState === 'header' || isDesktop"
+          @navClick="handleNavClick" 
+          :activeSection="activeSection"
+        />
+      </Transition>
       <article class="justify justify-center flex w-full">
         <Transition name="fade" mode="out-in">
           <component
@@ -154,4 +168,5 @@ onBeforeUnmount(() => {
 .fade-leave-to {
   color: var(--black);
 }
+
 </style>

@@ -65,7 +65,7 @@ p {
 
 #sidebar {
   max-width: 150px;
-   /* 64px for the hamburger icon + 4px for the line */
+  /* 64px for the hamburger icon + 4px for the line */
   min-width: calc(96px + 4px);
   width: 8vw;
   border-right: var(--white) 4px solid;
@@ -106,12 +106,18 @@ article {
   margin-left: calc(294px + 6rem);
 }
 
+@media (max-width: 768px) {
+  article {
+    margin: 2vw
+  }
+}
+
 section {
   width: 80%;
 }
 
 #mobile-menu nav {
-  margin-left: calc(64px + 4px + 4rem);
+  margin-top: calc(64px + 4px + 4rem); 
 }
 
 /* header {
