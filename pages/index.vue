@@ -1,4 +1,3 @@
-<
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import Logo from "~/components/Logo.vue";

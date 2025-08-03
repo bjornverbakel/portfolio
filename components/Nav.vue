@@ -39,6 +39,15 @@ function handleNavClick(section) {
 </template>
 
 <style scoped>
+nav {
+  font-size: clamp(2.75rem, 4vw, 3.75rem);
+  line-height: 1;
+}
+
+#mobile-menu nav {
+  margin-top: calc(64px + 4px + 4rem);
+}
+
 .nav-btn {
   user-select: none;
   mix-blend-mode: difference;

@@ -71,34 +71,6 @@ p {
   border-right: var(--white) 4px solid;
 }
 
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--black);
-  transition:
-    top 0.5s ease,
-    bottom 0.5s ease;
-}
-
-.backdrop.no-transition {
-  transition: none;
-}
-
-#logo {
-  -webkit-user-select: none;
-  user-select: none;
-  width: -webkit-fill-available;
-  max-height: 300px;
-}
-
-nav {
-  font-size: clamp(2.75rem, 4vw, 3.75rem);
-  line-height: 1;
-}
-
 article {
   margin-top: 2rem;
   margin-right: 2rem;
@@ -114,10 +86,6 @@ article {
 
 section {
   width: 80%;
-}
-
-#mobile-menu nav {
-  margin-top: calc(64px + 4px + 4rem); 
 }
 
 /* header {
