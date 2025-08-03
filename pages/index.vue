@@ -111,6 +111,8 @@ onBeforeUnmount(() => {
     <header class="flex flex-row sticky top-0 z-10 mix-blend-difference">
       <Logo
         ref="logoRef"
+        :backdropState="backdropState"
+        :isDesktop="isDesktop"
         @height="setElementHeights"
         @scrolling="handleLogoScrolling"
         @logoClick="handleLogoClick"

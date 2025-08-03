@@ -1,6 +1,11 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, watch } from "vue";
 import { useEmitHeight } from "../composables/useEmitHeight";
+
+const props = defineProps({
+  backdropState: String,
+  isDesktop: Boolean
+});
 
 const logoRef = ref(null);
 const isScrolled = ref(false); // Track if user has scrolled past threshold
@@ -10,13 +15,32 @@ const emit = defineEmits(["height", "scrolling", "logoClick"]);
 // Use the height emitter composable
 const { updateHeight } = useEmitHeight(logoRef, emit, "height");
 
+// Computed property to determine logo state based on screen size and navigation state
+const logoShouldBeSmall = computed(() => {
+  if (props.isDesktop) {
+    // On desktop, use scroll-based behavior
+    return isScrolled.value;
+  } else {
+    // On mobile, use navigation state
+    return props.backdropState === 'content';
+  }
+});
+
+// Watch for state changes and update height
+watch(logoShouldBeSmall, () => {
+  setTimeout(updateHeight, 50);
+});
+
 // Handle logo click
 function handleLogoClick() {
   emit("logoClick");
 }
 
-// Handle scroll events to change logo state
+// Handle scroll events to change logo state (only for desktop)
 function handleScroll() {
+  // Only apply scroll-based behavior on desktop
+  if (!props.isDesktop) return;
+  
   // Clear existing timeout and set new one
   if (scrollTimeout.value) {
     clearTimeout(scrollTimeout.value);
@@ -56,8 +80,8 @@ onBeforeUnmount(() => {
       src="/logo.svg" 
       alt="Logo" 
       :class="{ 
-        'h-[50px] md:h-[100px]': isScrolled, 
-        'h-[300px]': !isScrolled 
+        'h-[50px] md:h-[100px]': logoShouldBeSmall, 
+        'h-[300px]': !logoShouldBeSmall 
       }"
       class="transition-all duration-500 ease btn"
       @click="handleLogoClick"
