@@ -174,5 +174,4 @@ onBeforeUnmount(() => {
 .fade-leave-to {
   color: var(--black);
 }
-
 </style>
