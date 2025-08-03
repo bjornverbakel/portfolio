@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div id="logo" class="flex m-8 z-10" ref="logoRef">
+  <div id="logo" class="flex mt-8 mb-8 ml-8 mr-[calc(4rem+48px)] sm:mr-8 z-10" ref="logoRef">
     <img 
       draggable="false" 
       src="/logo.svg" 
