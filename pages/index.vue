@@ -149,7 +149,12 @@ onBeforeUnmount(() => {
       @toggle="toggleMobileMenu"
     />
 
-    <MobileMenu :isOpen="isMobileMenuOpen" @close="closeMobileMenu" />
+    <MobileMenu 
+      :isOpen="isMobileMenuOpen" 
+      :activeSection="activeSection"
+      @close="closeMobileMenu" 
+      @navClick="handleNavClick"
+    />
 
     <CustomCursor />
   </div>

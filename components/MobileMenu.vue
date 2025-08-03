@@ -4,12 +4,20 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  activeSection: String,
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "navClick"]);
 
 function closeMenu() {
   emit("close");
+}
+
+function handleNavClick(section) {
+  // Forward the nav click to parent
+  emit("navClick", section);
+  // Close the mobile menu after navigation
+  closeMenu();
 }
 </script>
 
@@ -19,6 +27,9 @@ function closeMenu() {
     :class="isOpen ? 'translate-x-0' : 'translate-x-full sm:-translate-x-full'"
   >
     <!-- Menu content -->
-    <Nav />
+    <Nav 
+      :activeSection="activeSection"
+      @navClick="handleNavClick"
+    />
   </div>
 </template>
