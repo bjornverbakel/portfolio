@@ -80,7 +80,7 @@ article {
 
 @media (max-width: 768px) {
   article {
-    margin: 2vw
+    margin: 2rem 2vw
   }
 }
 

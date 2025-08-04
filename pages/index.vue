@@ -18,7 +18,7 @@ const activeSection = ref(null);
 const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
 const isMobileMenuOpen = ref(false); // Track mobile menu state
-const isDesktop = ref(false); // Track if screen is desktop size
+const isDesktop = ref(false); // Track if user is on desktop device
 
 function setElementHeights(h) {
   headerHeight.value = h;
@@ -68,22 +68,45 @@ function toggleMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 }
 
-function checkScreenSize() {
-  isDesktop.value = window.innerWidth >= 768; // md breakpoint
+function detectDesktop() {
+  // Check user agent for desktop operating systems and devices
+  const userAgent = navigator.userAgent.toLowerCase();
+  
+  // Mobile/tablet detection patterns
+  const mobilePatterns = [
+    /android/i,
+    /webos/i,
+    /iphone/i,
+    /ipad/i,
+    /ipod/i,
+    /blackberry/i,
+    /windows phone/i,
+    /mobile/i,
+    /tablet/i
+  ];
+  
+  // Check if any mobile pattern matches
+  const isMobile = mobilePatterns.some(pattern => pattern.test(userAgent));
+  
+  // Also check screen width as fallback for small screens
+  const hasLargeScreen = window.innerWidth >= 768;
+  
+  // Consider desktop if not mobile and has reasonable screen size
+  isDesktop.value = !isMobile && hasLargeScreen;
 }
 
 onMounted(() => {
-  checkScreenSize();
+  detectDesktop();
   window.addEventListener("resize", () => {
     contentHeight.value = window.innerHeight - headerHeight.value;
-    checkScreenSize();
+    detectDesktop();
   });
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", () => {
     contentHeight.value = window.innerHeight - headerHeight.value;
-    checkScreenSize();
+    detectDesktop();
   });
 });
 </script>
@@ -91,7 +114,8 @@ onBeforeUnmount(() => {
 <template>
   <div
     id="app"
-    class="grid grid-cols-1 sm:grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen cursor-none"
+    class="grid grid-cols-1 sm:grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen"
+    :class="{ 'cursor-none': isDesktop }"
   >
     <Backdrop
       :headerHeight="headerHeight"
@@ -156,7 +180,7 @@ onBeforeUnmount(() => {
       @navClick="handleNavClick"
     />
 
-    <CustomCursor />
+    <CustomCursor v-if="isDesktop" />
   </div>
 </template>
 
@@ -173,5 +197,10 @@ onBeforeUnmount(() => {
 .fade-enter-from,
 .fade-leave-to {
   color: var(--black);
+}
+
+/* Ensure buttons have pointer cursor on non-desktop devices */
+#app:not(.cursor-none) .btn {
+  cursor: pointer;
 }
 </style>
