@@ -1,59 +1,3 @@
-<script setup>
-import { ref, onMounted, onBeforeUnmount, computed, Transition } from "vue";
-import Logo from "~/components/Logo.vue";
-import Nav from "~/components/Nav.vue";
-import Backdrop from "~/components/Backdrop.vue";
-import CustomCursor from "~/components/CustomCursor.vue";
-import About from "~/components/About.vue";
-import Projects from "~/components/Projects.vue";
-import Contact from "~/components/Contact.vue";
-import MobileMenu from "~/components/MobileMenu.vue";
-import HamburgerMenuIcon from "~/components/HamburgerMenuIcon.vue";
-import { useDesktopDetection } from "~/composables/useDesktopDetection.js";
-
-const headerHeight = ref(0);
-const contentHeight = ref(0);
-const backdropState = ref("header");
-const activeSection = ref(null);
-const isLogoScrolling = ref(false); // Track logo scrolling state
-const logoRef = ref(null); // Reference to the Logo component
-const isMobileMenuOpen = ref(false); // Track mobile menu state
-
-// Use desktop detection composable
-const { isDesktop } = useDesktopDetection();
-
-// Component map for content
-const componentMap = {
-  about: About,
-  projects: Projects,
-  contact: Contact,
-};
-
-// Computed property for active component
-const activeComponent = computed(() => 
-  activeSection.value ? componentMap[activeSection.value] || 'div' : 'div'
-);
-
-function setElementHeights(h) {
-  headerHeight.value = h;
-  // Calculate content height as window height minus header height
-  contentHeight.value = window.innerHeight - headerHeight.value;
-}
-
-// Create stable resize handler to prevent memory leaks
-const resizeHandler = () => {
-  contentHeight.value = window.innerHeight - headerHeight.value;
-};
-
-onMounted(() => {
-  window.addEventListener("resize", resizeHandler);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", resizeHandler);
-});
-</script>
-
 <template>
   <div
     id="app"
@@ -117,6 +61,62 @@ onBeforeUnmount(() => {
     <CustomCursor v-if="isDesktop" />
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount, computed, Transition } from "vue";
+import Logo from "~/components/Logo.vue";
+import Nav from "~/components/Nav.vue";
+import Backdrop from "~/components/Backdrop.vue";
+import CustomCursor from "~/components/CustomCursor.vue";
+import About from "~/components/About.vue";
+import Projects from "~/components/Projects.vue";
+import Contact from "~/components/Contact.vue";
+import MobileMenu from "~/components/MobileMenu.vue";
+import HamburgerMenuIcon from "~/components/HamburgerMenuIcon.vue";
+import { useDesktopDetection } from "~/composables/useDesktopDetection.js";
+
+const headerHeight = ref(0);
+const contentHeight = ref(0);
+const backdropState = ref("header");
+const activeSection = ref(null);
+const isLogoScrolling = ref(false); // Track logo scrolling state
+const logoRef = ref(null); // Reference to the Logo component
+const isMobileMenuOpen = ref(false); // Track mobile menu state
+
+// Use desktop detection composable
+const { isDesktop } = useDesktopDetection();
+
+// Component map for content
+const componentMap = {
+  about: About,
+  projects: Projects,
+  contact: Contact,
+};
+
+// Computed property for active component
+const activeComponent = computed(() => 
+  activeSection.value ? componentMap[activeSection.value] || 'div' : 'div'
+);
+
+function setElementHeights(h) {
+  headerHeight.value = h;
+  // Calculate content height as window height minus header height
+  contentHeight.value = window.innerHeight - headerHeight.value;
+}
+
+// Create stable resize handler to prevent memory leaks
+const resizeHandler = () => {
+  contentHeight.value = window.innerHeight - headerHeight.value;
+};
+
+onMounted(() => {
+  window.addEventListener("resize", resizeHandler);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", resizeHandler);
+});
+</script>
 
 <style>
 /* COLOR instead of OPACITY for fade due to mix blend mode */
