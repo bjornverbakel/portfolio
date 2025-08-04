@@ -1,11 +1,14 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, watch } from "vue";
 import { useEmitHeight } from "../composables/useEmitHeight";
+import { useDesktopDetection } from "../composables/useDesktopDetection";
 
 const props = defineProps({
-  backdropState: String,
-  isDesktop: Boolean
+  backdropState: String
 });
+
+// Use desktop detection composable
+const { isDesktop } = useDesktopDetection();
 
 const logoRef = ref(null);
 const isScrolled = ref(false); // Track if user has scrolled past threshold
@@ -17,7 +20,7 @@ const { updateHeight } = useEmitHeight(logoRef, emit, "height");
 
 // Computed property to determine logo state based on screen size and navigation state
 const logoShouldBeSmall = computed(() => {
-  if (props.isDesktop) {
+  if (isDesktop.value) {
     // On desktop, use scroll-based behavior
     return isScrolled.value;
   } else {
@@ -31,15 +34,39 @@ watch(logoShouldBeSmall, () => {
   setTimeout(updateHeight, 50);
 });
 
+// Optimized scroll completion check with cleanup
+let scrollCheckId = null;
+
 // Handle logo click
 function handleLogoClick() {
-  emit("logoClick");
+  // Cancel any existing scroll check
+  if (scrollCheckId) {
+    cancelAnimationFrame(scrollCheckId);
+  }
+
+  // First, scroll to top smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // Monitor scroll position with cleanup
+  function checkScrollComplete() {
+    if (window.scrollY <= 5) {
+      emit("logoClick"); // Emit when scroll is complete
+      scrollCheckId = null;
+    } else {
+      scrollCheckId = requestAnimationFrame(checkScrollComplete);
+    }
+  }
+
+  scrollCheckId = requestAnimationFrame(checkScrollComplete);
 }
 
 // Handle scroll events to change logo state (only for desktop)
 function handleScroll() {
   // Only apply scroll-based behavior on desktop
-  if (!props.isDesktop) return;
+  if (!isDesktop.value) return;
   
   // Clear existing timeout and set new one
   if (scrollTimeout.value) {
@@ -69,6 +96,10 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
   if (scrollTimeout.value) {
     clearTimeout(scrollTimeout.value);
+  }
+  // Cancel any pending scroll check
+  if (scrollCheckId) {
+    cancelAnimationFrame(scrollCheckId);
   }
 });
 </script>

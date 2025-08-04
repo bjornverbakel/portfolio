@@ -47,6 +47,11 @@ body {
   min-height: 100vh;
 }
 
+/* Ensure buttons have pointer cursor on non-desktop devices */
+#app:not(.cursor-none) .btn {
+  cursor: pointer;
+}
+
 h1,
 h2,
 h3,
@@ -80,7 +85,7 @@ article {
 
 @media (max-width: 768px) {
   article {
-    margin: 2rem 2vw
+    margin: 2rem 2vw;
   }
 }
 
