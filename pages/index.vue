@@ -23,39 +23,67 @@
         ref="logoRef"
         :backdropState="backdropState"
         @height="setElementHeights"
-        @scrolling="(scrolling) => isLogoScrolling = scrolling"
-        @logoClick="() => { backdropState = 'header'; activeSection = null; }"
+        @scrolling="(scrolling) => (isLogoScrolling = scrolling)"
+        @logoClick="
+          () => {
+            backdropState = 'header';
+            activeSection = null;
+          }
+        "
       />
     </header>
 
     <main class="flex flex-row">
-      <Transition name="fade" mode="out-in">
-        <Nav 
+      <Transition name="fade-opacity" mode="out-in">
+        <div
           v-show="backdropState === 'header' || isDesktop"
-          @navClick="(section) => { backdropState = 'content'; activeSection = section.toLowerCase(); }" 
-          :activeSection="activeSection"
-        />
+          class="m-8 flex flex-col gap-1 mix-blend-difference fixed w-fit"
+        >
+          <div class="flex mix-blend-difference gap-1">
+            <div class="bg-[var(--white)] w-1"></div>
+            <div class="bg-[var(--white)] w-full p-1 pl-2 pr-2">
+              <span class="mix-blend-difference text-xl"
+                >Front-end Developer
+              </span>
+            </div>
+          </div>
+          <div
+            class="border-[var(--white)] border-solid border-4 mix-blend-difference"
+          >
+            <Nav
+              @navClick="
+                (section) => {
+                  backdropState = 'content';
+                  activeSection = section.toLowerCase();
+                }
+              "
+              :activeSection="activeSection"
+            />
+          </div>
+        </div>
       </Transition>
       <article class="justify justify-center flex w-full">
-        <Transition name="fade" mode="out-in">
-          <component
-            :is="activeComponent"
-            :key="activeSection"
-          />
+        <Transition name="fade-color" mode="out-in">
+          <component :is="activeComponent" :key="activeSection" />
         </Transition>
       </article>
     </main>
 
-    <HamburgerMenuIcon 
+    <HamburgerMenuIcon
       :isMobileMenuOpen="isMobileMenuOpen"
-      @toggle="() => isMobileMenuOpen = !isMobileMenuOpen"
+      @toggle="() => (isMobileMenuOpen = !isMobileMenuOpen)"
     />
 
-    <MobileMenu 
-      :isOpen="isMobileMenuOpen" 
+    <MobileMenu
+      :isOpen="isMobileMenuOpen"
       :activeSection="activeSection"
-      @close="() => isMobileMenuOpen = false" 
-      @navClick="(section) => { backdropState = 'content'; activeSection = section.toLowerCase(); }"
+      @close="() => (isMobileMenuOpen = false)"
+      @navClick="
+        (section) => {
+          backdropState = 'content';
+          activeSection = section.toLowerCase();
+        }
+      "
     />
 
     <CustomCursor v-if="isDesktop" />
@@ -94,8 +122,8 @@ const componentMap = {
 };
 
 // Computed property for active component
-const activeComponent = computed(() => 
-  activeSection.value ? componentMap[activeSection.value] || 'div' : 'div'
+const activeComponent = computed(() =>
+  activeSection.value ? componentMap[activeSection.value] || "div" : "div"
 );
 
 function setElementHeights(h) {
@@ -119,17 +147,26 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-/* COLOR instead of OPACITY for fade due to mix blend mode */
-.fade-enter-active {
+/* COLOR instead of OPACITY for fade looks better due to mix blend mode, use where possible instead of fade-opacity */
+.fade-color-enter-active {
   transition: color 0.2s ease-in;
 }
-
-.fade-leave-active {
+.fade-color-leave-active {
   transition: color 0.2s ease-out;
 }
-
-.fade-enter-from,
-.fade-leave-to {
+.fade-color-enter-from,
+.fade-color-leave-to {
   color: var(--black);
+}
+
+.fade-opacity-enter-active {
+  transition: opacity 0.2s ease-in;
+}
+.fade-opacity-leave-active {
+  transition: opacity 0.2s ease-out;
+}
+.fade-opacity-enter-from,
+.fade-opacity-leave-to {
+  opacity: 0;
 }
 </style>

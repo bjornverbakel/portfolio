@@ -11,7 +11,7 @@ function handleNavClick(section) {
 </script>
 
 <template>
-  <nav class="m-8 flex flex-col flex-grow fixed mix-blend-difference">
+  <nav class="m-8 flex flex-col flex-grow mix-blend-difference">
     <ul class="flex flex-col flex-grow gap-8">
       <li
         class="nav-btn btn"
@@ -40,7 +40,7 @@ function handleNavClick(section) {
 
 <style scoped>
 nav {
-  font-size: clamp(2.75rem, 4vw, 3.75rem);
+  font-size: clamp(2.75rem, 3.5vw, 3.75rem);
   line-height: 1;
 }
 
