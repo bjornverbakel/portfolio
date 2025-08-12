@@ -35,6 +35,8 @@ body {
   padding: 0;
   background: var(--white);
   color: var(--white);
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -70,8 +72,7 @@ p {
 
 #sidebar {
   max-width: 150px;
-  /* 64px for the hamburger icon + 4px for the line */
-  min-width: calc(96px + 4px);
+  min-width: 100px;
   width: 8vw;
   border-right: var(--white) 4px solid;
 }
@@ -90,3 +91,23 @@ section {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 } */
+
+.snap-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section h1,
+section h2 {
+  margin-bottom: 1rem;
+}
+
+section p {
+  max-width: 600px;
+  line-height: 1.6;
+}

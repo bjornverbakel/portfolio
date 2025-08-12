@@ -13,12 +13,19 @@
 
     <div
       id="sidebar"
-      class="justify-center flex-col row-span-2 mix-blend-difference hidden sm:flex"
+      class="justify-center flex-col row-span-2 mix-blend-difference hidden sm:flex relative"
     >
       <div class="line"></div>
+
+      <!-- Snap section indicator -->
+      <transition name="fade-opacity" mode="out-in">
+        <SnapIndicator :activeSection="activeSection" />
+      </transition>
     </div>
 
-    <header class="flex flex-row items-start gap-6 sticky top-0 z-10 mix-blend-difference items-center">
+    <header
+      class="flex flex-row gap-6 sticky top-0 z-10 mix-blend-difference items-center"
+    >
       <Logo
         ref="logoRef"
         :backdropState="backdropState"
@@ -33,10 +40,7 @@
       />
       <!-- Nav appears in header when in content state -->
       <Transition name="fade-opacity" mode="out-in">
-        <div
-          v-if="showHeaderNav"
-          class="mix-blend-difference"
-        >
+        <div v-if="showHeaderNav" class="mix-blend-difference">
           <Nav
             :activeSection="activeSection"
             :horizontal="true"
@@ -80,7 +84,7 @@
           </div>
         </div>
       </Transition>
-      <article class="justify justify-center flex w-full m-8">
+      <article class="justify justify-center flex-col flex w-full m-8 items-center">
         <Transition name="fade-color" mode="out-in">
           <component :is="activeComponent" :key="activeSection" />
         </Transition>
@@ -109,11 +113,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed, watch, Transition } from "vue";
+import {
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  computed,
+  watch,
+  Transition,
+} from "vue";
 import Logo from "~/components/Logo.vue";
 import Nav from "~/components/navigation/Nav.vue";
 import Backdrop from "~/components/Backdrop.vue";
 import CustomCursor from "~/components/CustomCursor.vue";
+import SnapIndicator from "~/components/SnapIndicator.vue";
 import About from "~/components/content/About.vue";
 import Projects from "~/components/content/Projects.vue";
 import Contact from "~/components/content/Contact.vue";
@@ -147,7 +159,7 @@ const activeComponent = computed(() =>
 
 // Watch backdropState changes and delay nav appearance
 watch(backdropState, (newState) => {
-  if (newState === 'content') {
+  if (newState === "content") {
     // Delay showing nav until logo transition is complete (500ms)
     setTimeout(() => {
       showHeaderNav.value = true;
