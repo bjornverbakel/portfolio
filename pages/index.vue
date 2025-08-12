@@ -18,7 +18,7 @@
       <div class="line"></div>
     </div>
 
-    <header class="flex flex-row sticky top-0 z-10 mix-blend-difference">
+    <header class="flex flex-row items-start gap-6 sticky top-0 z-10 mix-blend-difference items-center">
       <Logo
         ref="logoRef"
         :backdropState="backdropState"
@@ -31,12 +31,30 @@
           }
         "
       />
+      <!-- Nav appears in header when in content state -->
+      <Transition name="fade-opacity" mode="out-in">
+        <div
+          v-if="showHeaderNav"
+          class="mix-blend-difference"
+        >
+          <Nav
+            :activeSection="activeSection"
+            :horizontal="true"
+            @navClick="
+              (section) => {
+                backdropState = 'content';
+                activeSection = section.toLowerCase();
+              }
+            "
+          />
+        </div>
+      </Transition>
     </header>
 
     <main class="flex flex-row">
       <Transition name="fade-opacity" mode="out-in">
         <div
-          v-show="backdropState === 'header' || isDesktop"
+          v-show="backdropState === 'header'"
           class="m-8 flex flex-col gap-1 mix-blend-difference fixed w-fit"
         >
           <div class="flex mix-blend-difference gap-1">
@@ -62,7 +80,7 @@
           </div>
         </div>
       </Transition>
-      <article class="justify justify-center flex w-full">
+      <article class="justify justify-center flex w-full m-8">
         <Transition name="fade-color" mode="out-in">
           <component :is="activeComponent" :key="activeSection" />
         </Transition>
@@ -91,7 +109,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed, Transition } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, watch, Transition } from "vue";
 import Logo from "~/components/Logo.vue";
 import Nav from "~/components/navigation/Nav.vue";
 import Backdrop from "~/components/Backdrop.vue";
@@ -110,6 +128,7 @@ const activeSection = ref(null);
 const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
 const isMobileMenuOpen = ref(false); // Track mobile menu state
+const showHeaderNav = ref(false); // Track when to show nav in header
 
 // Use desktop detection composable
 const { isDesktop } = useDesktopDetection();
@@ -125,6 +144,19 @@ const componentMap = {
 const activeComponent = computed(() =>
   activeSection.value ? componentMap[activeSection.value] || "div" : "div"
 );
+
+// Watch backdropState changes and delay nav appearance
+watch(backdropState, (newState) => {
+  if (newState === 'content') {
+    // Delay showing nav until logo transition is complete (500ms)
+    setTimeout(() => {
+      showHeaderNav.value = true;
+    }, 500);
+  } else {
+    // Hide nav immediately when going back to header
+    showHeaderNav.value = false;
+  }
+});
 
 function setElementHeights(h) {
   headerHeight.value = h;

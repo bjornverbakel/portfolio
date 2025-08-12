@@ -34,7 +34,7 @@ function handleLogoClick() {
       src="/images/logo.svg" 
       alt="Logo" 
       :class="{ 
-        'h-[50px] md:h-[100px]': logoShouldBeSmall, 
+        'h-[50px] lg:h-[75px]': logoShouldBeSmall, 
         'h-[300px]': !logoShouldBeSmall 
       }"
       class="transition-all duration-500 ease btn"

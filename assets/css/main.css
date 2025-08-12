@@ -76,30 +76,13 @@ p {
   border-right: var(--white) 4px solid;
 }
 
-article {
-  margin-top: 2rem;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
-  margin-left: calc(346px + 8rem);
-}
-
 section {
   width: 80%;
 }
 
 @media (max-width: 1100px) {
-  article {
-    margin-left: calc(296px + 4rem);
-  }
-
   section {
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  article {
-    margin: 2rem;
   }
 }
 

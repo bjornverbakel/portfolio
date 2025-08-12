@@ -1,6 +1,10 @@
 <script setup>
 const props = defineProps({
   activeSection: String,
+  horizontal: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["navClick"]);
@@ -11,8 +15,14 @@ function handleNavClick(section) {
 </script>
 
 <template>
-  <nav class="m-8 flex flex-col flex-grow mix-blend-difference">
-    <ul class="flex flex-col flex-grow gap-8">
+  <nav
+    class="flex mix-blend-difference"
+    :class="[horizontal ? 'flex-row hidden lg:flex mr-8' : 'flex-col flex-grow m-8']"
+  >
+    <ul
+      class="flex gap-8"
+      :class="horizontal ? 'flex-row' : 'flex-col flex-grow'"
+    >
       <li
         class="nav-btn btn"
         :class="{ active: activeSection === 'about' }"
@@ -42,6 +52,10 @@ function handleNavClick(section) {
 nav {
   font-size: clamp(2.75rem, 3.5vw, 3.75rem);
   line-height: 1;
+}
+
+nav.flex-row {
+  font-size: 1.75rem;
 }
 
 #mobile-menu nav {
