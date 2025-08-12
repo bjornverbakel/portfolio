@@ -93,14 +93,14 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, Transition } from "vue";
 import Logo from "~/components/Logo.vue";
-import Nav from "~/components/Nav.vue";
+import Nav from "~/components/navigation/Nav.vue";
 import Backdrop from "~/components/Backdrop.vue";
 import CustomCursor from "~/components/CustomCursor.vue";
-import About from "~/components/About.vue";
-import Projects from "~/components/Projects.vue";
-import Contact from "~/components/Contact.vue";
-import MobileMenu from "~/components/MobileMenu.vue";
-import HamburgerMenuIcon from "~/components/HamburgerMenuIcon.vue";
+import About from "~/components/content/About.vue";
+import Projects from "~/components/content/Projects.vue";
+import Contact from "~/components/content/Contact.vue";
+import MobileMenu from "~/components/navigation/MobileMenu.vue";
+import HamburgerMenuIcon from "~/components/navigation/HamburgerMenuIcon.vue";
 import { useDesktopDetection } from "~/composables/useDesktopDetection.js";
 
 const headerHeight = ref(0);
