@@ -84,11 +84,15 @@
           </div>
         </div>
       </Transition>
-      <article class="justify justify-center flex-col flex w-full m-8 items-center">
-        <Transition name="fade-color" mode="out-in">
-          <component :is="activeComponent" :key="activeSection" />
-        </Transition>
-      </article>
+      <Transition name="fade-color" mode="out-in">
+        <article 
+          v-if="activeSection && backdropState === 'content'" 
+          class="justify justify-center flex-col flex w-full m-8 items-center"
+          :key="activeSection"
+        >
+          <component :is="activeComponent" />
+        </article>
+      </Transition>
     </main>
 
     <HamburgerMenuIcon
@@ -119,6 +123,7 @@ import {
   onBeforeUnmount,
   computed,
   watch,
+  nextTick,
   Transition,
 } from "vue";
 import Logo from "~/components/Logo.vue";

@@ -10,10 +10,9 @@ export function useEmitHeight(refEl, emit, eventName = "height") {
       const marginTop = parseInt(style.marginTop, 10);
       const marginBottom = parseInt(style.marginBottom, 10);
       emit(eventName, el.offsetHeight + marginTop + marginBottom);
-      // Log the emitted height for debugging (only in development)
-      if (process.env.NODE_ENV === "development") {
-        console.log(`Emitted ${eventName}:`, el.offsetHeight + marginTop + marginBottom);
-      }
+      // if (process.env.NODE_ENV === "development") {
+      //   console.log(`Emitted ${eventName}:`, el.offsetHeight + marginTop + marginBottom);
+      // }
     }
   }
 

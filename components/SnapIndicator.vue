@@ -20,23 +20,28 @@ const props = defineProps({
 });
 
 const currentSnapSection = ref(0);
+const sectionCount = ref(0);
 
-// Section counts for each content type
-const sectionCounts = {
-  about: 3,
-  projects: 1, // Adjust based on your projects component
-  contact: 1,  // Adjust based on your contact component
+// Automatically detect section count by scanning DOM
+const detectSectionCount = () => {
+  if (!props.activeSection) return 0;
+  
+  // Wait for next tick to ensure content is rendered
+  setTimeout(() => {
+    const snapSections = document.querySelectorAll('.snap-section');
+    sectionCount.value = snapSections.length;
+  }, 100);
 };
 
 // Get section count for current active section
 const getSectionCount = () => {
-  if (!props.activeSection) return 0;
-  return sectionCounts[props.activeSection] || 1;
+  return sectionCount.value || 0;
 };
 
-// Reset snap section when changing active section
+// Reset snap section and detect new count when changing active section
 watch(() => props.activeSection, () => {
   currentSnapSection.value = 0;
+  detectSectionCount();
 });
 
 // Track scroll position to determine current snap section
@@ -53,6 +58,7 @@ const scrollHandler = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", scrollHandler);
+  detectSectionCount(); // Initial detection
 });
 
 onBeforeUnmount(() => {
