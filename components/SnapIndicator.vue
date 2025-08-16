@@ -1,69 +1,121 @@
 <template>
-  <div class="snap-indicator" v-if="activeSection">
-    <div 
-      v-for="(section, index) in getSectionCount()" 
-      :key="index"
+  <div class="snap-indicator" v-if="activeSection && dotCount > 0">
+    <div
+      v-for="n in dotCount"
+      :key="n - 1"
       class="snap-dot"
-      :class="{ 'active': currentSnapSection === index }"
-    ></div>
+      :class="{ active: (n - 1) === activeIndex }"
+      aria-hidden="true"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   activeSection: {
     type: String,
-    default: null
+    default: null,
+  },
+})
+
+// Reactive state
+const dotCount = ref(0)
+const activeIndex = ref(0)
+
+// Internal refs
+let sections = [] /** @type {HTMLElement[]} */
+let timer = null /** @type {number | null} */
+
+function clearSections() {
+  sections = []
+}
+
+function setSections(newSections) {
+  sections = newSections
+  dotCount.value = sections.length
+  updateActiveIndexFromViewport(sections)
+}
+
+function updateActiveIndexFromViewport(sections) {
+  // Choose the section whose center is closest to viewport center
+  const viewportCenter = window.innerHeight / 2
+  let bestIdx = 0
+  let bestDist = Infinity
+  sections.forEach((el, idx) => {
+    const rect = el.getBoundingClientRect()
+    const center = rect.top + rect.height / 2
+    const dist = Math.abs(center - viewportCenter)
+    if (dist < bestDist) {
+      bestDist = dist
+      bestIdx = idx
+    }
+  })
+  activeIndex.value = bestIdx
+}
+
+function findSectionsInActiveArticle() {
+  // Prefer sections under the current <article> (active content)
+  const article = document.querySelector('article')
+  const nodeList = article
+    ? article.querySelectorAll('.snap-section')
+    : document.querySelectorAll('article .snap-section')
+  return Array.from(nodeList)
+}
+
+function refreshOnceAfterDelay(delayMs = 400) {
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
   }
-});
+  timer = setTimeout(() => {
+    timer = null
+    const newSections = findSectionsInActiveArticle()
+    setSections(newSections)
+  }, delayMs)
+}
 
-const currentSnapSection = ref(0);
-const sectionCount = ref(0);
+// React to nav/content changes
+watch(
+  () => props.activeSection,
+  (newVal) => {
+    if (newVal) {
+      // Reset and refresh once after the article transition
+      clearSections()
+      dotCount.value = 0
+      activeIndex.value = 0
+      refreshOnceAfterDelay(400)
+    } else {
+      dotCount.value = 0
+      activeIndex.value = 0
+      clearSections()
+    }
+  }
+)
 
-// Automatically detect section count by scanning DOM
-const detectSectionCount = () => {
-  if (!props.activeSection) return 0;
-  
-  // Wait for next tick to ensure content is rendered
-  setTimeout(() => {
-    const snapSections = document.querySelectorAll('.snap-section');
-    sectionCount.value = snapSections.length;
-  }, 100);
-};
-
-// Get section count for current active section
-const getSectionCount = () => {
-  return sectionCount.value || 0;
-};
-
-// Reset snap section and detect new count when changing active section
-watch(() => props.activeSection, () => {
-  currentSnapSection.value = 0;
-  detectSectionCount();
-});
-
-// Track scroll position to determine current snap section
-const scrollHandler = () => {
-  if (!props.activeSection) return;
-  
-  const scrollTop = window.scrollY;
-  const viewportHeight = window.innerHeight;
-  const currentSection = Math.floor(scrollTop / viewportHeight);
-  const maxSections = getSectionCount() - 1;
-  
-  currentSnapSection.value = Math.min(currentSection, maxSections);
-};
+// Keep active dot in sync during manual scrolls (fallback/assist to IO)
+function onScroll() {
+  if (!sections.length) return
+  updateActiveIndexFromViewport(sections)
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", scrollHandler);
-  detectSectionCount(); // Initial detection
-});
+  window.addEventListener('scroll', onScroll, { passive: true })
+  // Initial mount: if a section is already active, schedule a refresh
+  if (props.activeSection) {
+    refreshOnceAfterDelay(0)
+  }
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", scrollHandler);
-});
+  window.removeEventListener('scroll', onScroll)
+  if (timer) clearTimeout(timer)
+  clearSections()
+})
+
+// Expose to template
+// dotCount, activeIndex are already refs
 </script>
 
 <style scoped>
