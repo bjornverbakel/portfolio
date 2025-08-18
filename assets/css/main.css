@@ -77,31 +77,28 @@ p {
   border-right: var(--white) 4px solid;
 }
 
-section {
-  width: 80%;
+article {
+  margin-top: 4rem;
+  margin-right: 4rem;
+  margin-bottom: 4rem;
+  margin-left: calc(260px + 8rem);
 }
 
-@media (max-width: 1100px) {
-  section {
-    width: 100%;
+@media (max-width: 1024px) {
+  article {
+    margin: 2rem;
   }
 }
 
-.snap-section {
+/* .snap-section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-section h1,
-section h2 {
-  margin-bottom: 1rem;
-}
+} */
 
 section p {
-  max-width: 600px;
-  line-height: 1.6;
+  line-height: 2;
 }

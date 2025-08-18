@@ -50,7 +50,7 @@ function handleNavClick(section) {
 
 <style scoped>
 nav {
-  font-size: clamp(2.75rem, 3.5vw, 3.75rem);
+  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -68,7 +68,7 @@ nav.flex-row {
   line-height: normal;
   width: min-content;
   font-family: "Mono Regular", sans-serif;
-  padding: 0 1rem;
+  padding: 0 .75rem;
   position: relative;
 }
 

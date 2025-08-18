@@ -63,12 +63,12 @@
     <main class="flex flex-row">
       <Transition name="fade-opacity" mode="out-in">
         <div
-          v-show="backdropState === 'header'"
-          class="m-8 flex flex-col gap-1 mix-blend-difference fixed w-fit"
+          v-show="backdropState === 'header' || isDesktop"
+          class="m-16 hidden flex-col gap-1 mix-blend-difference fixed w-fit lg:flex"
         >
           <div class="flex mix-blend-difference gap-1">
             <div class="bg-[var(--white)] w-1"></div>
-            <div class="bg-[var(--white)] w-full p-1 pl-2 pr-2">
+            <div class="bg-[var(--white)] w-full p-1 pl-3 pr-3">
               <span class="mix-blend-difference text-xl"
                 >Front-end Developer
               </span>
@@ -89,10 +89,13 @@
           </div>
         </div>
       </Transition>
-      <Transition name="fade-color" mode="out-in">
+      <Transition name="fade-opacity" mode="out-in">
         <article 
           v-if="activeSection && backdropState === 'content'" 
-          class="justify justify-center flex-col flex w-full items-center"
+            :class="[
+            'justify justify-start flex-col flex w-full items-center',
+            { 'm-8': !isDesktop }
+            ]"
           :key="activeSection"
         >
           <component :is="activeComponent" />
@@ -128,7 +131,6 @@ import {
   onBeforeUnmount,
   computed,
   watch,
-  nextTick,
   Transition,
 } from "vue";
 import Logo from "~/components/Logo.vue";
