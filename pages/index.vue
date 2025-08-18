@@ -25,6 +25,11 @@
 
     <header
       class="flex flex-row gap-6 sticky top-0 z-10 mix-blend-difference items-center"
+      :style="
+        headerBlurred
+          ? { '-webkit-backdrop-filter': 'blur(25px)', 'backdrop-filter': 'blur(25px)' }
+          : null
+      "
     >
       <Logo
         ref="logoRef"
@@ -87,7 +92,7 @@
       <Transition name="fade-color" mode="out-in">
         <article 
           v-if="activeSection && backdropState === 'content'" 
-          class="justify justify-center flex-col flex w-full m-8 items-center"
+          class="justify justify-center flex-col flex w-full items-center"
           :key="activeSection"
         >
           <component :is="activeComponent" />
@@ -146,6 +151,8 @@ const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
 const isMobileMenuOpen = ref(false); // Track mobile menu state
 const showHeaderNav = ref(false); // Track when to show nav in header
+  const headerBlurred = ref(false); // Apply blur to header only when backdrop finished animating to content
+  let blurTimer = null; // timer to toggle blur after transition ends
 
 // Use desktop detection composable
 const { isDesktop } = useDesktopDetection();
@@ -162,15 +169,29 @@ const activeComponent = computed(() =>
   activeSection.value ? componentMap[activeSection.value] || "div" : "div"
 );
 
-// Watch backdropState changes and delay nav appearance
+// Watch backdropState to control header nav appearance and blur timing
 watch(backdropState, (newState) => {
+  // Clear any pending timers when state changes
+  if (blurTimer) {
+    clearTimeout(blurTimer);
+    blurTimer = null;
+  }
+
   if (newState === "content") {
-    // Delay showing nav until logo transition is complete (500ms)
+    // Ensure blur is OFF while backdrop is animating to content
+    headerBlurred.value = false;
+    // Delay showing nav until logo/backdrop transition is complete (500ms)
     setTimeout(() => {
       showHeaderNav.value = true;
     }, 500);
+    // After the same transition delay, enable the blur on the header
+    blurTimer = setTimeout(() => {
+      headerBlurred.value = true;
+      blurTimer = null;
+    }, 500);
   } else {
-    // Hide nav immediately when going back to header
+    // On the way back to header (backdrop moving), remove blur immediately and hide nav
+    headerBlurred.value = false;
     showHeaderNav.value = false;
   }
 });
@@ -192,6 +213,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", resizeHandler);
+  if (blurTimer) {
+    clearTimeout(blurTimer);
+    blurTimer = null;
+  }
 });
 </script>
 

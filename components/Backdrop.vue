@@ -3,6 +3,8 @@ defineProps({
   headerHeight: Number,
   contentHeight: Number,
   state: String,
+  // Accept but don't use; prevents fallthrough attrs on root element
+  isScrolling: Boolean,
 });
 </script>
 

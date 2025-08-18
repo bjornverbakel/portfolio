@@ -1,5 +1,5 @@
 <template>
-  <div class="snap-indicator" v-if="activeSection && dotCount > 0">
+  <!-- <div class="snap-indicator" v-if="activeSection && dotCount > 0">
     <div
       v-for="n in dotCount"
       :key="n - 1"
@@ -7,9 +7,9 @@
       :class="{ active: (n - 1) === activeIndex }"
       aria-hidden="true"
     />
-  </div>
+  </div> -->
 </template>
-
+<!-- 
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 
@@ -140,4 +140,4 @@ onBeforeUnmount(() => {
   background-color: var(--white);
   transform: scale(1.3);
 }
-</style>
+</style> -->

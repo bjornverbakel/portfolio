@@ -28,6 +28,11 @@
   src: url("../fonts/DMMono-Light.ttf") format("truetype");
 }
 
+/* Ensure buttons have pointer cursor on non-desktop devices */
+#app:not(.cursor-none) .btn {
+  cursor: pointer;
+}
+
 html,
 body {
   font-family: "DMMono Light", sans-serif;
@@ -47,11 +52,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-/* Ensure buttons have pointer cursor on non-desktop devices */
-#app:not(.cursor-none) .btn {
-  cursor: pointer;
 }
 
 h1,
@@ -87,14 +87,8 @@ section {
   }
 }
 
-/* header {
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-} */
-
 .snap-section {
   min-height: 100vh;
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   justify-content: center;
