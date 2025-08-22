@@ -89,17 +89,17 @@
           </div>
         </div>
       </Transition>
-      <Transition name="fade-opacity" mode="out-in">
-        <article 
-          v-if="activeSection && backdropState === 'content'" 
-            :class="[
+      <Transition name="fade-color" mode="out-in">
+        <div id="contentWrapper"
+          v-if="activeSection && backdropState === 'content'"
+          :class="[
             'justify justify-start flex-col flex w-full items-center',
             { 'm-8': !isDesktop }
             ]"
           :key="activeSection"
         >
           <component :is="activeComponent" />
-        </article>
+      </div>
       </Transition>
     </main>
 
