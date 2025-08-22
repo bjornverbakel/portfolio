@@ -14,36 +14,63 @@
     </section>
     <section class="flex flex-col gap-4">
       <h1 class="text-xl">Skills</h1>
-      <ul class="flex flex-row flex-wrap gap-2">
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/js.svg" alt="JavaScript" />
-          <span>JavaScript</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/vue.svg" alt="Vue.js" />
-          <span>Vue.js</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/nuxt.svg" alt="Nuxt" />
-          <span>Nuxt</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/react.svg" alt="React" />
-          <span>React (R3F)</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/threejs.svg" alt="Three.js" />
-          <span>Three.js</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/figma.svg" alt="Figma" />
-          <span>Figma</span>
-        </li>
-        <li class="skill-card">
-          <NuxtImg src="/icons/skills/blender.svg" alt="Blender" />
-          <span>Blender</span>
-        </li>
-      </ul>
+
+      <!-- Frontend Development -->
+      <div class="skill-category">
+        <h2 class="text-sm mb-2 opacity-80 text-gray-600">Development</h2>
+        <ul class="flex flex-row flex-wrap gap-2">
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/js.svg" alt="JavaScript" />
+            <span>JavaScript</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/vue.svg" alt="Vue.js" />
+            <span>Vue.js</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/nuxt.svg" alt="Nuxt" />
+            <span>Nuxt</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/react.svg" alt="React" />
+            <span>React (R3F)</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3D & Graphics -->
+      <div class="skill-category">
+        <h2 class="text-sm mb-2 opacity-80 text-gray-600">3D & Graphics</h2>
+        <ul class="flex flex-row flex-wrap gap-2">
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/threejs.svg" alt="Three.js" />
+            <span>Three.js</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/blender.svg" alt="Blender" />
+            <span>Blender</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Design Tools -->
+      <div class="skill-category">
+        <h2 class="text-sm mb-2 opacity-80 text-gray-600">Design & Media</h2>
+        <ul class="flex flex-row flex-wrap gap-2">
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/figma.svg" alt="Figma" />
+            <span>Figma</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/premiere.svg" alt="Premiere Pro" />
+            <span>Premiere Pro</span>
+          </li>
+          <li class="skill-card">
+            <NuxtImg src="/icons/skills/photoshop.svg" alt="Photoshop" />
+            <span>Photoshop</span>
+          </li>
+        </ul>
+      </div>
     </section>
     <!-- <img
       src="@/public/images/portrait-dither.png"
@@ -53,4 +80,8 @@
   </article>
 </template>
 
-<style></style>
+<style scoped>
+.skill-category h2 {
+  font-family: "DMMono Light", sans-serif;
+}
+</style>

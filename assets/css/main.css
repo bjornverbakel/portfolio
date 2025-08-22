@@ -120,4 +120,5 @@ p {
 .skill-card img {
   width: 1.5rem;
   height: 1.5rem;
+  -webkit-user-drag: none;
 }
