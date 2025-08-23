@@ -31,7 +31,7 @@ function handleLogoClick() {
   <div id="logo" class="flex m-8 z-10" ref="logoRef">
     <NuxtImg 
       draggable="false" 
-      src="/icons/logo.svg" 
+      src="/images/logo.svg" 
       alt="Logo" 
       :class="{ 
         'h-[50px] lg:h-[75px]': logoShouldBeSmall, 
