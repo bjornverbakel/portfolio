@@ -28,7 +28,7 @@ export function useDesktopDetection() {
       ]
       
       const isMobile = mobilePatterns.some(pattern => pattern.test(userAgent))
-      const hasLargeScreen = currentWidth >= 768
+      const hasLargeScreen = currentWidth >= 1024
       
       cachedIsDesktop = !isMobile && hasLargeScreen
       lastWindowWidth = currentWidth

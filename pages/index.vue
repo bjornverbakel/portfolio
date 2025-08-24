@@ -27,7 +27,10 @@
       class="flex flex-row gap-6 sticky top-0 z-10 mix-blend-difference items-center"
       :style="
         headerBlurred
-          ? { '-webkit-backdrop-filter': 'blur(25px)', 'backdrop-filter': 'blur(25px)' }
+          ? {
+              '-webkit-backdrop-filter': 'blur(25px)',
+              'backdrop-filter': 'blur(25px)',
+            }
           : null
       "
     >
@@ -63,8 +66,11 @@
     <main class="flex flex-row">
       <Transition name="fade-opacity" mode="out-in">
         <div
-          v-show="backdropState === 'header' || isDesktop"
-          class="m-16 hidden flex-col gap-1 mix-blend-difference fixed w-fit lg:flex"
+          class="m-16 flex-col gap-1 mix-blend-difference fixed w-fit flex"
+          :class="{
+            flex: !isDesktop && backdropState === 'header',
+            hidden: !isDesktop && backdropState === 'content',
+          }"
         >
           <div class="flex mix-blend-difference gap-1">
             <div class="bg-[var(--white)] w-1"></div>
@@ -90,16 +96,16 @@
         </div>
       </Transition>
       <Transition name="fade-color" mode="out-in">
-        <div id="contentWrapper"
+        <div
+          id="contentWrapper"
           v-if="activeSection && backdropState === 'content'"
           :class="[
-            'justify justify-start flex-col flex w-full items-center',
-            { 'm-8': !isDesktop }
-            ]"
+            'justify justify-start flex-col flex w-full items-center m-16 lg:ml-[24.25rem]',
+          ]"
           :key="activeSection"
         >
           <component :is="activeComponent" />
-      </div>
+        </div>
       </Transition>
     </main>
 
@@ -153,8 +159,8 @@ const isLogoScrolling = ref(false); // Track logo scrolling state
 const logoRef = ref(null); // Reference to the Logo component
 const isMobileMenuOpen = ref(false); // Track mobile menu state
 const showHeaderNav = ref(false); // Track when to show nav in header
-  const headerBlurred = ref(false); // Apply blur to header only when backdrop finished animating to content
-  let blurTimer = null; // timer to toggle blur after transition ends
+const headerBlurred = ref(false); // Apply blur to header only when backdrop finished animating to content
+let blurTimer = null; // timer to toggle blur after transition ends
 
 // Use desktop detection composable
 const { isDesktop } = useDesktopDetection();

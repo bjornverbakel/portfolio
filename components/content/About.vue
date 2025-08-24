@@ -1,5 +1,5 @@
 <template>
-  <article class="flex flex-col gap-16 text-justify">
+  <article class="w-full flex flex-col gap-16 text-justify">
     <section class="flex flex-col gap-4">
       <h1 class="text-xl">About Me</h1>
       <p>
@@ -18,7 +18,7 @@
       <!-- Frontend Development -->
       <div class="skill-category">
         <h2 class="text-sm mb-2 opacity-80 text-gray-600">Development</h2>
-        <ul class="flex flex-row flex-wrap gap-2">
+        <ul>
           <li class="skill-card">
             <NuxtImg src="/images/skills/js.svg" alt="JavaScript" />
             <span>JavaScript</span>
@@ -41,7 +41,7 @@
       <!-- 3D & Graphics -->
       <div class="skill-category">
         <h2 class="text-sm mb-2 opacity-80 text-gray-600">3D & Graphics</h2>
-        <ul class="flex flex-row flex-wrap gap-2">
+        <ul>
           <li class="skill-card">
             <NuxtImg src="/images/skills/threejs.svg" alt="Three.js" />
             <span>Three.js</span>
@@ -56,7 +56,7 @@
       <!-- Design Tools -->
       <div class="skill-category">
         <h2 class="text-sm mb-2 opacity-80 text-gray-600">Design & Media</h2>
-        <ul class="flex flex-row flex-wrap gap-2">
+        <ul>
           <li class="skill-card">
             <NuxtImg src="/images/skills/figma.svg" alt="Figma" />
             <span>Figma</span>
@@ -79,9 +79,3 @@
     /> -->
   </article>
 </template>
-
-<style scoped>
-.skill-category h2 {
-  font-family: "DMMono Light", sans-serif;
-}
-</style>
