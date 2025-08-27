@@ -16,11 +16,6 @@
       class="justify-center flex-col row-span-2 mix-blend-difference hidden sm:flex relative"
     >
       <div class="line"></div>
-
-      <!-- Snap section indicator -->
-      <transition name="fade-opacity" mode="out-in">
-        <SnapIndicator :activeSection="activeSection" />
-      </transition>
     </div>
 
     <header
@@ -47,18 +42,9 @@
         "
       />
       <!-- Nav appears in header when in content state -->
-      <Transition name="fade-opacity" mode="out-in">
+      <Transition name="nav-fade" mode="out-in">
         <div v-if="showHeaderNav" class="mix-blend-difference">
-          <Nav
-            :activeSection="activeSection"
-            :horizontal="true"
-            @navClick="
-              (section) => {
-                backdropState = 'content';
-                activeSection = section.toLowerCase();
-              }
-            "
-          />
+          <Nav :activeSection="activeSection" :horizontal="true" @navClick="navigateTo" />
         </div>
       </Transition>
     </header>
@@ -80,22 +66,12 @@
               </span>
             </div>
           </div>
-          <div
-            class="border-[var(--white)] border-solid border-4 mix-blend-difference"
-          >
-            <Nav
-              @navClick="
-                (section) => {
-                  backdropState = 'content';
-                  activeSection = section.toLowerCase();
-                }
-              "
-              :activeSection="activeSection"
-            />
-          </div>
+            <div class="border-[var(--white)] border-solid border-4 mix-blend-difference">
+              <Nav @navClick="navigateTo" :activeSection="activeSection" />
+            </div>
         </div>
       </Transition>
-      <Transition name="fade-color" mode="out-in">
+      <Transition name="section" mode="out-in">
         <div
           id="contentWrapper"
           v-if="activeSection && backdropState === 'content'"
@@ -104,7 +80,7 @@
           ]"
           :key="activeSection"
         >
-          <component :is="activeComponent" />
+          <component :is="activeComponent" :from-header="enteredFromHeader" />
         </div>
       </Transition>
     </main>
@@ -118,12 +94,7 @@
       :isOpen="isMobileMenuOpen"
       :activeSection="activeSection"
       @close="() => (isMobileMenuOpen = false)"
-      @navClick="
-        (section) => {
-          backdropState = 'content';
-          activeSection = section.toLowerCase();
-        }
-      "
+      @navClick="navigateTo"
     />
 
     <CustomCursor v-if="isDesktop" />
@@ -150,6 +121,7 @@ import Contact from "~/components/content/Contact.vue";
 import MobileMenu from "~/components/navigation/MobileMenu.vue";
 import HamburgerMenuIcon from "~/components/navigation/HamburgerMenuIcon.vue";
 import { useDesktopDetection } from "~/composables/useDesktopDetection.js";
+import { usePreloadProjectImages } from "~/composables/usePreloadProjectImages";
 
 const headerHeight = ref(0);
 const contentHeight = ref(0);
@@ -161,9 +133,12 @@ const isMobileMenuOpen = ref(false); // Track mobile menu state
 const showHeaderNav = ref(false); // Track when to show nav in header
 const headerBlurred = ref(false); // Apply blur to header only when backdrop finished animating to content
 let blurTimer = null; // timer to toggle blur after transition ends
+const enteredFromHeader = ref(false); // set true only when transitioning from header to projects
 
 // Use desktop detection composable
 const { isDesktop } = useDesktopDetection();
+// Start preloading project images early
+usePreloadProjectImages();
 
 // Component map for content
 const componentMap = {
@@ -191,12 +166,12 @@ watch(backdropState, (newState) => {
     // Delay showing nav until logo/backdrop transition is complete (500ms)
     setTimeout(() => {
       showHeaderNav.value = true;
-    }, 500);
+    }, 750);
     // After the same transition delay, enable the blur on the header
     blurTimer = setTimeout(() => {
       headerBlurred.value = true;
       blurTimer = null;
-    }, 500);
+    }, 750);
   } else {
     // On the way back to header (backdrop moving), remove blur immediately and hide nav
     headerBlurred.value = false;
@@ -226,29 +201,105 @@ onBeforeUnmount(() => {
     blurTimer = null;
   }
 });
+
+function navigateTo(section) {
+  const target = section.toLowerCase();
+  const cameFromHeader = backdropState.value === 'header';
+  backdropState.value = 'content';
+  activeSection.value = target;
+  enteredFromHeader.value = cameFromHeader && target === 'projects';
+  if (enteredFromHeader.value) {
+    // reset after mount so reactivity only affects first render
+    setTimeout(() => (enteredFromHeader.value = false), 50);
+  }
+}
 </script>
 
 <style>
-/* COLOR instead of OPACITY for fade looks better due to mix blend mode, use where possible instead of fade-opacity */
-.fade-color-enter-active {
-  transition: color 0.2s ease-in;
+/* Nav fade: enter only (instant hide) */
+.nav-fade-enter-active {
+  transition: opacity 0.2s ease;
 }
-.fade-color-leave-active {
-  transition: color 0.2s ease-out;
+.nav-fade-enter-from {
+  opacity: 0;
 }
-.fade-color-enter-from,
-.fade-color-leave-to {
-  color: var(--black);
+.nav-fade-enter-to {
+  opacity: 1;
+}
+.nav-fade-leave-active {
+  transition: none;
+}
+.nav-fade-leave-from,
+.nav-fade-leave-to {
+  opacity: 1;
 }
 
 .fade-opacity-enter-active {
-  transition: opacity 0.2s ease-in;
+  transition:
+    opacity 0.2s ease-in,
+    transform 0.2s ease-in;
 }
 .fade-opacity-leave-active {
-  transition: opacity 0.2s ease-out;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
 }
-.fade-opacity-enter-from,
+.fade-opacity-enter-from {
+  opacity: 0;
+  transform: translateY(-4px);
+}
 .fade-opacity-leave-to {
   opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Section (content swap) parent transition; descendants opt-in via data attributes */
+.section-enter-active [data-fade-color],
+.section-leave-active [data-fade-color] {
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.section-enter-from [data-fade-color] {
+  color: var(--black);
+  transform: translateY(-4px);
+}
+.section-leave-to [data-fade-color] {
+  color: var(--black);
+  transform: translateY(-4px);
+}
+
+.section-enter-active [data-fade-opacity],
+.section-leave-active [data-fade-opacity] {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.section-enter-from [data-fade-opacity] {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+.section-leave-to [data-fade-opacity] {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Background + color fade (e.g., skill cards) */
+.section-enter-active [data-fade-bg],
+.section-leave-active [data-fade-bg] {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.section-enter-from [data-fade-bg] {
+  background-color: var(--black);
+  color: var(--black);
+  transform: translateY(-4px);
+}
+.section-leave-to [data-fade-bg] {
+  background-color: var(--black);
+  color: var(--black);
+  transform: translateY(-4px);
 }
 </style>
