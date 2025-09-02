@@ -12,11 +12,12 @@ interface Props {
   }>;
 }
 
+const emit = defineEmits(["select"]);
 defineProps<Props>();
 </script>
 
 <template>
-  <div class="project-card btn h-full">
+  <div class="project-card btn" @click="emit('select')">
     <NuxtImg
       :src="imageSrc"
       :alt="imageAlt"

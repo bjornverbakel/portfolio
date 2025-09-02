@@ -1,3 +1,15 @@
+/* Fade out for data-fade-opacity elements (used in Projects, About, Contact) */
+[data-fade-opacity] {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(-4px);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,18 +23,22 @@
   font-family: "Mono Regular";
   src: url("../fonts/Mono-Regular.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Mono Bold";
   src: url("../fonts/Mono-Bold.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Mono Light";
   src: url("../fonts/Mono-Light.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "DMMono Regular";
   src: url("../fonts/DMMono-Regular.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "DMMono Light";
   src: url("../fonts/DMMono-Light.ttf") format("truetype");
