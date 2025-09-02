@@ -1,10 +1,10 @@
 <template>
   <div class="project-expanded">
     <div class="project-card">
-      <h1 class="text-6xl title-wrapper">
-        <button class="btn mix-blend-difference bg-[var(--white)] p-1" @click="$emit('close')">
+      <h1 class="text-6xl title-wrapper flex items-center gap-4">
+        <button class="btn mix-blend-difference bg-[var(--white)]" @click="$emit('close')">
           <span class="mix-blend-difference">
-            <Icon icon="mdi:close" style="color: white; font-size: 2rem;" />
+            <Icon icon="mdi:close" height="none" :style="{ width: '56px', height: '56px' }" />
           </span>
         </button>
         {{ project.title }}
@@ -18,7 +18,7 @@
           <div class="flex flex-col flex-1 gap-2">
 
             <div class="flex-1 flex flex-col justify-between gap-2">
-              <p class="text-sm">
+              <p>
                 {{ project.descriptionLong }}
               </p>
               <div class="flex gap-2 justify-between">

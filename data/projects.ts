@@ -14,7 +14,7 @@ export const projects: ProjectItem[] = [
     descriptionShort:
       "An interactive public installation where visitors can pop bubbles to read responses and share their own based on the daily prompt.",
     descriptionLong:
-      "Unbubble is a public installation that invites visitors to engage with thought-provoking prompts by popping bubbles. Each bubble reveals a unique response, and participants are encouraged to share their own insights, creating a dynamic dialogue around the daily theme.",
+      "Unbubble is a public installation that invites visitors to engage with daily rotating prompts by popping bubbles. Each bubble reveals an anonymous response of a prior participant, and visitors are encouraged to share their own insights, creating a dialogue around the daily theme. This way people are encouraged to interact with the viewpoints of others, and step out of their bubble.",
     imageSrc: "/images/projects/unbubble.png",
     imageAlt: "Advertising screen mockup",
     skills: [
@@ -28,7 +28,7 @@ export const projects: ProjectItem[] = [
     descriptionShort:
       "Interactive choose-your-own-adventure video experience for World War 2 museum Het Hornemann Huis.",
     descriptionLong:
-      "Het Hornemann Huis offers an immersive choose-your-own-adventure video experience that allows visitors to explore the complexities of World War 2 through interactive storytelling. Users can make choices that influence the narrative, providing a personalized and engaging way to learn about history.",
+      "An interactive choose-your-own-adventure video experience for World War 2 museum Het Hornemann Huis, with the goal of making users think about the various dilemmas people had to go through during the war. Viewers are able to make choices that influence the storyline, providing a personalized and engaging way to learn about history.",
     imageSrc: "/images/projects/hornemann_1.png",
     imageAlt: "Auditorium screen mockup",
     skills: [
@@ -39,7 +39,7 @@ export const projects: ProjectItem[] = [
   {
     title: "Compass",
     descriptionShort: 'Website for a "create-your-own media studio" project.',
-    descriptionLong: 'Compass is a website designed for a "create-your-own media studio" project.',
+    descriptionLong: 'Compass is a website designed and developed for a "create-your-own media studio" project. The goal was to create a unique visual identity. This was achieved through various storytelling techniques and theming around the client being lost at sea, and the Compass being a guiding tool for their journey.',
     imageSrc: "/images/projects/compass_2.png",
     imageAlt: "Desktop screen mockup",
     skills: [
@@ -51,7 +51,7 @@ export const projects: ProjectItem[] = [
   {
     title: "3D OS",
     descriptionShort: "3D environment with a monitor and replicated Operating System.",
-    descriptionLong: "3D OS is a virtual environment that simulates a desktop experience with a monitor and a fully functional replicated Operating System.",
+    descriptionLong: "This is a 3D environment that simulates a desktop experience with a monitor and a functional replicated Operating System.",
     imageSrc: "/images/projects/monitor_2.png",
     imageAlt: "Desktop screen mockup",
     skills: [
@@ -64,7 +64,7 @@ export const projects: ProjectItem[] = [
     descriptionShort:
       "Website and live dashboard for automatic solar panel cleaning device.",
     descriptionLong:
-      "Solair is a website and live dashboard designed for an automatic solar panel cleaning device. It provides real-time monitoring and control over the cleaning process, ensuring optimal performance and efficiency.",
+      "Solair is a website and live dashboard developed for an automatic solar panel cleaning device. It provides real-time monitoring and control over the cleaning process, ensuring optimal performance and efficiency.",
     imageSrc: "/images/projects/solair_4.png",
     imageAlt: "Desktop screen mockup",
     skills: [
