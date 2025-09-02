@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  
+
   css: ['@/assets/css/main.css'],
 
   app: {
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         { rel: 'preload', href: '/fonts/DMMono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
         { rel: 'preload', href: '/fonts/Mono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
         { rel: 'preload', href: '/fonts/Mono-Bold.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
-        { rel: 'preload', href: '/fonts/Mono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' }
+        { rel: 'preload', href: '/fonts/Mono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
       ]
     }
   },
@@ -23,6 +23,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxtjs/tailwindcss'
-  ]
+    '@nuxtjs/tailwindcss',
+  ],
 })

@@ -3,7 +3,7 @@ import { NuxtImg } from "#components";
 
 interface Props {
   title: string;
-  description: string;
+  descriptionShort: string;
   imageSrc: string;
   imageAlt: string;
   skills: Array<{
@@ -18,11 +18,8 @@ defineProps<Props>();
 
 <template>
   <div class="project-card btn" @click="emit('select')">
-    <NuxtImg
-      :src="imageSrc"
-      :alt="imageAlt"
-      class="project-image w-[20vw] min-w-[225px] lg:min-w-[200px] max-w-[225px]"
-    />
+    <NuxtImg :src="imageSrc" :alt="imageAlt"
+      class="project-image w-[20vw] min-w-[225px] lg:min-w-[200px] max-w-[225px]" />
 
     <div class="project-details">
       <div class="flex gap-4 flex-1">
@@ -33,16 +30,11 @@ defineProps<Props>();
           </h1>
           <div class="flex-1 flex flex-col justify-between gap-2">
             <p class="text-sm">
-              {{ description }}
+              {{ descriptionShort }}
             </p>
             <div class="flex gap-2 justify-between">
               <div class="skill-card">
-                <NuxtImg
-                  v-for="skill in skills"
-                  :key="skill.alt"
-                  :src="skill.icon"
-                  :alt="skill.alt"
-                />
+                <NuxtImg v-for="skill in skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" />
               </div>
             </div>
           </div>
@@ -105,6 +97,7 @@ defineProps<Props>();
     mix-blend-mode: difference;
     word-wrap: break-word;
     hyphens: auto;
+    text-align: left;
 
     span {
       mix-blend-mode: difference;

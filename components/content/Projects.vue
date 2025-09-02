@@ -35,7 +35,7 @@ function handleCloseDetail() {
         <ProjectCard v-for="(project, i) in projects" v-show="fadeState === 'cards'" :key="project.title"
           data-fade-opacity
           :style="fadeState === 'cards' ? { transitionDelay: ((props.fromHeader ? baseCardDelay : 0) + i * 90) + 'ms' } : { transitionDelay: '0ms' }"
-          :title="project.title" :description="project.description" :image-src="project.imageSrc"
+          :title="project.title" :descriptionShort="project.descriptionShort" :image-src="project.imageSrc"
           :image-alt="project.imageAlt" :skills="project.skills" class="h-full" @select="() => handleSelect(project)" />
       </transition-group>
       <transition name="fade-opacity">
