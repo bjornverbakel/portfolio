@@ -93,15 +93,6 @@ p {
   border-right: var(--white) 4px solid;
 }
 
-/* .snap-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
-
 #contentWrapper p {
   line-height: 2;
 }

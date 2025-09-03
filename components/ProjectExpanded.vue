@@ -1,5 +1,5 @@
 <template>
-  <div class="project-expanded">
+  <div class="project-expanded" data-fade-opacity>
     <div class="project-card">
       <h1 class="text-6xl title-wrapper flex items-center gap-4">
         <button class="btn mix-blend-difference bg-[var(--white)]" @click="$emit('close')">
