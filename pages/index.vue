@@ -44,7 +44,11 @@
       <!-- Nav appears in header when in content state -->
       <Transition name="nav-fade" mode="out-in">
         <div v-if="showHeaderNav" class="mix-blend-difference">
-          <Nav :activeSection="activeSection" :horizontal="true" @navClick="navigateTo" />
+          <Nav
+            :activeSection="activeSection"
+            :horizontal="true"
+            @navClick="navigateTo"
+          />
         </div>
       </Transition>
     </header>
@@ -61,14 +65,16 @@
           <div class="flex mix-blend-difference gap-1">
             <div class="bg-[var(--white)] w-1"></div>
             <div class="bg-[var(--white)] w-full p-1 pl-3 pr-3">
-              <span class="mix-blend-difference text-xl"
-                >Front-end Developer
+              <span class="mix-blend-difference text-xl">
+                Front-end Developer
               </span>
             </div>
           </div>
-            <div class="border-[var(--white)] border-solid border-4 mix-blend-difference">
-              <Nav @navClick="navigateTo" :activeSection="activeSection" />
-            </div>
+          <div
+            class="border-[var(--white)] border-solid border-4 mix-blend-difference"
+          >
+            <Nav @navClick="navigateTo" :activeSection="activeSection" />
+          </div>
         </div>
       </Transition>
       <Transition name="section" mode="out-in">
@@ -204,10 +210,10 @@ onBeforeUnmount(() => {
 
 function navigateTo(section) {
   const target = section.toLowerCase();
-  const cameFromHeader = backdropState.value === 'header';
-  backdropState.value = 'content';
+  const cameFromHeader = backdropState.value === "header";
+  backdropState.value = "content";
   activeSection.value = target;
-  enteredFromHeader.value = cameFromHeader && target === 'projects';
+  enteredFromHeader.value = cameFromHeader && target === "projects";
   if (enteredFromHeader.value) {
     // reset after mount so reactivity only affects first render
     setTimeout(() => (enteredFromHeader.value = false), 50);
