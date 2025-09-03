@@ -1,20 +1,27 @@
 <script setup>
-defineProps({
+import { ref, onMounted } from 'vue';
+const props = defineProps({
   headerHeight: Number,
   contentHeight: Number,
   state: String,
-  // Accept but don't use; prevents fallthrough attrs on root element
   isScrolling: Boolean,
+});
+
+
+const slideIn = ref(false);
+onMounted(() => {
+  setTimeout(() => { slideIn.value = true; }, 1200);
 });
 </script>
 
 <template>
   <div
     class="backdrop"
+    :class="{ 'slide-in': slideIn }"
     :style="
-      state === 'header'
-        ? { top: headerHeight + 'px', bottom: '0px' }
-        : { top: '0px', bottom: contentHeight + 'px' }
+      props.state === 'header'
+        ? { top: props.headerHeight + 'px', bottom: '0px' }
+        : { top: '0px', bottom: props.contentHeight + 'px' }
     "
   ></div>
 </template>
@@ -30,6 +37,17 @@ defineProps({
   transition:
     top 0.5s ease,
     bottom 0.5s ease;
+}
+
+.backdrop {
+  transform: translateY(100vh);
+  transition:
+    top 0.5s ease,
+    bottom 0.5s ease,
+    transform 0.8s cubic-bezier(0.77,0,0.175,1);
+}
+.backdrop.slide-in {
+  transform: translateY(0);
 }
 
 .backdrop.no-transition {
