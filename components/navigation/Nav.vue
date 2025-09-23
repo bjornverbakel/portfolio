@@ -92,7 +92,7 @@ nav.flex-row {
 }
 
 .nav-btn::after {
-  height: 4px;
+  height: 2px;
 }
 
 .nav-btn:hover::after {
