@@ -1,9 +1,9 @@
 <template>
   <div class="project-expanded" data-fade-opacity>
     <div class="project-card">
-      <div class="flex btn gap-1 items-center" @click="$emit('close')">
+      <div class="flex btn gap-2 items-center" @click="$emit('close')">
         <button class="h-fit">
-          <span class="mix-blend-difference">
+          <span class="mix-blend-difference btn cursor-none">
             <Icon icon="material-symbols:arrow-back" height="24" />
           </span>
         </button>
@@ -16,7 +16,7 @@
         <div class="project-image-gallery 2xl:max-w-[1000px] 2xl:w-[50%]">
           <img class="project-image w-full object-contain" :src="project.images[selectedImage].src"
             :alt="project.images[selectedImage].alt" />
-          <div v-if="project.images.length > 1" class="image-thumbnails">
+          <div v-if="project.images.length > 1" class="image-thumbnails overflow-x-scroll ">
             <img v-for="(img, idx) in project.images" :key="img.src" :src="img.src" :alt="img.alt"
               :class="['thumbnail btn', { active: idx === selectedImage }]" @click="selectedImage = idx" />
           </div>
@@ -98,6 +98,14 @@ const selectedImage = ref(0)
 .image-thumbnails {
   display: flex;
   gap: 0.5rem;
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.image-thumbnails::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
 }
 
 .thumbnail {

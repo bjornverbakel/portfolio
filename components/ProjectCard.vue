@@ -30,7 +30,7 @@ defineProps<Props>();
 
     <div class="project-details">
       <div class="flex gap-4 flex-1">
-        <div class="bg-[var(--white)] w-[1px] mix-blend-difference"></div>
+        <div class="hidden md:flex bg-[var(--white)] w-[1px] mix-blend-difference"></div>
         <div class="flex flex-col flex-1 gap-4">
           <h1 class="text-xl title-wrapper">
             <span>{{ title }}</span>
