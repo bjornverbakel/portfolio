@@ -82,7 +82,7 @@
           id="contentWrapper"
           v-if="activeSection && backdropState === 'content'"
           :class="[
-            'justify justify-start flex-col flex w-full items-center m-16 lg:ml-[24.25rem]',
+            'justify justify-start flex-col flex w-full items-center m-8 sm:m-16 lg:ml-[24.25rem]',
           ]"
           :key="activeSection"
         >

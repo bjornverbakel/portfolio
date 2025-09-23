@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { NuxtImg } from "#components";
+import { Icon } from '@iconify/vue'
 
+
+interface ProjectImage {
+  src: string;
+  alt: string;
+}
 interface Props {
   title: string;
   descriptionShort: string;
-  imageSrc: string;
-  imageAlt: string;
+  images: ProjectImage[];
   skills: Array<{
     icon: string;
     alt: string;
   }>;
+  liveUrl?: string;
 }
 
 const emit = defineEmits(["select"]);
@@ -18,24 +24,29 @@ defineProps<Props>();
 
 <template>
   <div class="project-card btn" @click="emit('select')">
-    <NuxtImg :src="imageSrc" :alt="imageAlt"
+
+    <NuxtImg v-if="images && images.length" :src="images[0].src" :alt="images[0].alt"
       class="project-image w-[20vw] min-w-[225px] lg:min-w-[200px] max-w-[225px]" />
 
     <div class="project-details">
       <div class="flex gap-4 flex-1">
         <div class="bg-[var(--white)] w-1 mix-blend-difference"></div>
-        <div class="flex flex-col flex-1 gap-2">
+        <div class="flex flex-col flex-1 gap-4">
           <h1 class="text-xl title-wrapper">
             <span>{{ title }}</span>
           </h1>
-          <div class="flex-1 flex flex-col justify-between gap-2">
+          <div class="flex-1 flex flex-col justify-between gap-4">
             <p class="text-sm">
               {{ descriptionShort }}
             </p>
-            <div class="flex gap-2 justify-between">
+            <div class="flex gap-4 justify-between">
               <div class="skill-card">
                 <NuxtImg v-for="skill in skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" />
               </div>
+              <a v-if="liveUrl" :href="liveUrl" class="btn hover-btn" target="_blank" rel="noopener noreferrer">
+                <Icon icon="uil:browser" height="none" :style="{ width: '24px', height: '24px' }" />
+                <span>Live</span>
+              </a>
             </div>
           </div>
         </div>
@@ -79,7 +90,6 @@ defineProps<Props>();
 .project-details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   flex: 1;
 
   .skill-card {
@@ -92,8 +102,6 @@ defineProps<Props>();
   }
 
   div h1.title-wrapper {
-    background: var(--white);
-    padding: 0.25rem 0.75rem;
     mix-blend-mode: difference;
     word-wrap: break-word;
     hyphens: auto;
@@ -103,6 +111,10 @@ defineProps<Props>();
       mix-blend-mode: difference;
     }
   }
+}
+
+.hover-btn {
+  padding: 0.25rem 0.5rem;
 }
 
 /* Responsive design for mobile */

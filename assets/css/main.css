@@ -138,3 +138,60 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.hover-btn {
+  display: flex;
+  align-items: center;
+  mix-blend-mode: difference;
+  padding: 0.5rem 0.75rem;
+  gap: 8px;
+  position: relative;
+
+  span {
+    color: var(--white);
+    mix-blend-mode: difference;
+  }
+
+  img, svg {
+    width: 2rem;
+    height: 2rem;
+    -webkit-user-drag: none;
+    mix-blend-mode: difference;
+  }
+}
+
+.hover-btn::before,
+.hover-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--white);
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-btn::before {
+  width: 100%;
+  height: 100%;
+}
+
+.hover-btn::after {
+  width: 0;
+  height: 4px;
+}
+
+.hover-btn:hover::before {
+  width: 0;
+}
+
+.hover-btn:hover::after {
+  width: 100%;
+}
+
+.hover-btn.active::before {
+  width: 0;
+}
+
+.hover-btn.active::after {
+  width: 100%;
+}
