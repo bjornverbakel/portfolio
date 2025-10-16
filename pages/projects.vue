@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { projects } from '~/data/projects';
 import ProjectExpanded from '~/components/ProjectExpanded.vue';
 
@@ -8,7 +8,11 @@ const baseCardDelay = 600; // delay cards from appearing after going from home t
 const props = defineProps<{ fromHeader?: boolean }>();
 
 const selectedProject = ref(null);
-const fadeState = ref('cards'); // 'cards' | 'fading' | 'detail'
+const fadeState = ref(''); // 'cards' | 'fading' | 'detail'
+
+onMounted(() => {
+  fadeState.value = 'cards';
+});
 
 function handleSelect(project: any) {
   fadeState.value = 'fading';
@@ -37,7 +41,7 @@ function handleCloseDetail() {
                     class="grid grid-cols-1 2xl:grid-cols-2 gap-8 items-stretch">
                     <ProjectCard v-for="(project, i) in projects" v-show="fadeState === 'cards'" :key="project.title"
                         data-fade-opacity
-                        :style="fadeState === 'cards' ? { transitionDelay: ((props.fromHeader ? baseCardDelay : 0) + i * 90) + 'ms' } : { transitionDelay: '0ms' }"
+                        :style="fadeState === 'cards' ? { transitionDelay: (baseCardDelay + i * 90) + 'ms' } : { transitionDelay: '0ms' }"
                         :title="project.title" :descriptionShort="project.descriptionShort" :images="project.images"
                         :skills="project.skills" :live-url="project.liveUrl" class="h-full"
                         @select="() => handleSelect(project)" />

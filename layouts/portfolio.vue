@@ -117,7 +117,6 @@ import CustomCursor from "~/components/CustomCursor.vue";
 import MobileMenu from "~/components/navigation/MobileMenu.vue";
 import HamburgerMenuIcon from "~/components/navigation/HamburgerMenuIcon.vue";
 import { useDesktopDetection } from "~/composables/useDesktopDetection.js";
-import { usePreloadProjectImages } from "~/composables/usePreloadProjectImages";
 
 const route = useRoute();
 const router = useRouter();
@@ -134,7 +133,6 @@ const headerBlurred = ref(false);
 let blurTimer = null;
 
 const { isDesktop } = useDesktopDetection();
-usePreloadProjectImages();
 
 // Route to section mapping
 const routeToSection = {
