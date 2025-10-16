@@ -1,4 +1,7 @@
 <template>
+  <SpeedInsights />
+  <Analytics/>
+
   <div
     id="app"
     class="grid grid-cols-1 sm:grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen"
@@ -102,6 +105,8 @@
 </template>
 
 <script setup>
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
+import { Analytics } from '@vercel/analytics/nuxt'
 import {
   ref,
   onMounted,
