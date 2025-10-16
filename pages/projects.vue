@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { projects } from '~/data/projects';
 import ProjectExpanded from '~/components/ProjectExpanded.vue';
 
 const baseCardDelay = 600; // delay cards from appearing after going from home to projects
 
-const props = defineProps<{ fromHeader?: boolean }>();
-
-const selectedProject = ref(null);
-const fadeState = ref(''); // 'cards' | 'fading' | 'detail'
+const router = useRouter();
+const fromHome = ref(false);
 
 onMounted(() => {
-  fadeState.value = 'cards';
+  // Check if we came from the home page
+  const previousRoute = router.options.history.state.back;
+  fromHome.value = previousRoute === '/' || previousRoute === '/index';
 });
+
+const selectedProject = ref(null);
+const fadeState = ref('cards'); // 'cards' | 'fading' | 'detail'
 
 function handleSelect(project: any) {
   fadeState.value = 'fading';
@@ -23,8 +27,17 @@ function handleSelect(project: any) {
 }
 
 function handleCloseDetail() {
-  fadeState.value = 'cards';
+  fadeState.value = 'fading';
   selectedProject.value = null;
+  setTimeout(() => {
+    fadeState.value = 'cards';
+  }, 400); // match with fade-out duration
+}
+
+// Calculate delay for each card
+function getCardDelay(index: number) {
+  const base = fromHome.value ? baseCardDelay : 1; // card bugs out and shifts in from the side if using 0 ms for some reason ¯\_(ツ)_/¯
+  return `${base + index * 90}ms`;
 }
 </script>
 
@@ -41,7 +54,7 @@ function handleCloseDetail() {
                     class="grid grid-cols-1 2xl:grid-cols-2 gap-8 items-stretch">
                     <ProjectCard v-for="(project, i) in projects" v-show="fadeState === 'cards'" :key="project.title"
                         data-fade-opacity
-                        :style="fadeState === 'cards' ? { transitionDelay: (baseCardDelay + i * 90) + 'ms' } : { transitionDelay: '0ms' }"
+                        :style="{ transitionDelay: fadeState === 'fading' ? '0ms' : getCardDelay(i) }"
                         :title="project.title" :descriptionShort="project.descriptionShort" :images="project.images"
                         :skills="project.skills" :live-url="project.liveUrl" class="h-full"
                         @select="() => handleSelect(project)" />
