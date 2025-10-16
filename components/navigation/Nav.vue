@@ -9,7 +9,8 @@ const props = defineProps({
 
 const emit = defineEmits(["navClick"]);
 
-function handleNavClick(section) {
+function handleNavClick(section, event) {
+  event.preventDefault(); // Prevent default link behavior
   emit("navClick", section);
 }
 </script>
@@ -26,23 +27,29 @@ function handleNavClick(section) {
       <li
         class="nav-btn btn"
         :class="{ active: activeSection === 'about' }"
-        @click="handleNavClick('About')"
+        @click="handleNavClick('about', $event)"
       >
-        <span>About</span>
+        <NuxtLink to="/about" class="nav-link">
+          <span>About</span>
+        </NuxtLink>
       </li>
       <li
         class="nav-btn btn"
         :class="{ active: activeSection === 'projects' }"
-        @click="handleNavClick('Projects')"
+        @click="handleNavClick('projects', $event)"
       >
-        <span>Projects</span>
+        <NuxtLink to="/projects" class="nav-link">
+          <span>Projects</span>
+        </NuxtLink>
       </li>
       <li
         class="nav-btn btn"
         :class="{ active: activeSection === 'contact' }"
-        @click="handleNavClick('Contact')"
+        @click="handleNavClick('contact', $event)"
       >
-        <span>Contact</span>
+        <NuxtLink to="/contact" class="nav-link">
+          <span>Contact</span>
+        </NuxtLink>
       </li>
     </ul>
   </nav>
@@ -68,8 +75,15 @@ nav.flex-row {
   line-height: normal;
   width: min-content;
   font-family: "Mono Regular", sans-serif;
-  padding: 0 .75rem;
+  padding: 0;
   position: relative;
+}
+
+.nav-link {
+  display: block;
+  padding: 0 .75rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav-btn span {

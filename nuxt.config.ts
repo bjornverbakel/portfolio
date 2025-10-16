@@ -5,6 +5,9 @@ export default defineNuxtConfig({
 
   css: ['@/assets/css/main.css'],
 
+  // Set ssr to false to avoid hydration mismatches for now
+  ssr: false,
+
   app: {
     head: {
       link: [

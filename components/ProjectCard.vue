@@ -26,7 +26,7 @@ defineProps<Props>();
   <div class="project-card btn" @click="emit('select')">
 
     <NuxtImg v-if="images && images.length" :src="images[0].src" :alt="images[0].alt"
-      class="project-image w-[20vw] min-w-[225px] lg:min-w-[200px] max-w-[225px]" />
+      class="project-image w-[20vw] min-w-[225px] lg:min-w-[200px] max-w-[225px]" placeholder />
 
     <div class="project-details">
       <div class="flex gap-4 flex-1">

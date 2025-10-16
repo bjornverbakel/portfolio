@@ -4,10 +4,10 @@ import { Analytics } from '@vercel/analytics/nuxt'
 </script>
 
 <template>
-    <SpeedInsights />
-    <Analytics/>
-    
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+  <SpeedInsights />
+  <Analytics/>
+  
+  <NuxtLayout name="portfolio">
+    <NuxtPage />
+  </NuxtLayout>
 </template>
