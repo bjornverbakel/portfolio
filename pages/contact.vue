@@ -10,18 +10,18 @@ import { Icon } from '@iconify/vue'
                 <h1 class="text-6xl" data-fade-color>Contact</h1>
                 <p data-fade-color>You can contact me at:</p>
                 <div class="flex flex-col gap-4">
-                    <a class="btn mix-blend-difference flex items-center gap-2 underline underline-offset-2 decoration-2"
+                    <a class="btn mix-blend-difference flex items-center gap-2 underline underline-offset-2 decoration-2 w-fit"
                         href="mailto:contact@bjornverbakel.nl" data-fade-color>
                         <Icon icon="material-symbols:mail-sharp" height="none"
                             :style="{ width: '2rem', height: '2rem' }" />
                         <span class="mix-blend-difference">contact@bjornverbakel.nl</span>
                     </a>
-                    <!-- <a class="btn mix-blend-difference flex align-middle gap-2 underline underline-offset-4 decoration-2"
-                        href="tel:#" data-fade-color>
+                    <a class="btn mix-blend-difference flex align-middle gap-2 underline underline-offset-2 decoration-2 w-fit"
+                        href="tel:+31651625191" data-fade-color>
                         <Icon icon="material-symbols:call-sharp" height="none"
                             :style="{ width: '2rem', height: '2rem' }" />
-                        <span class="mix-blend-difference">1234567890</span>
-                    </a> -->
+                        <p class="mix-blend-difference">+31 6 51625191</p>
+                    </a>
                 </div>
             </section>
             <section class="flex flex-col gap-4">
