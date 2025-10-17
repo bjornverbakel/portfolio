@@ -7,7 +7,7 @@ import { Icon } from '@iconify/vue'
     <NuxtLayout>
         <article class="w-full flex flex-col gap-16 text-justify">
             <section class="flex flex-col gap-4">
-                <h1 class="text-xl" data-fade-color>Contact</h1>
+                <h1 class="text-6xl" data-fade-color>Contact</h1>
                 <p data-fade-color>You can contact me at:</p>
                 <div class="flex flex-col gap-4">
                     <a class="btn mix-blend-difference flex align-middle gap-2 underline underline-offset-4 decoration-2"

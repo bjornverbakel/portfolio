@@ -2,7 +2,7 @@
     <NuxtLayout>
         <article class="w-full flex flex-col gap-16 text-justify">
             <section class="flex flex-col gap-4">
-                <h1 class="text-xl" data-fade-color>About Me</h1>
+                <h1 class="text-6xl" data-fade-color>About Me</h1>
                 <p data-fade-color>
                     My name is Bjorn Verbakel. I am an HBO-ICT student at Fontys University
                     of Applied Sciences in Eindhoven, with a focus on front-end development.
@@ -14,7 +14,7 @@
                 </p>
             </section>
             <section class="flex flex-col gap-4">
-                <h1 class="text-xl" data-fade-color>Skills</h1>
+                <h1 class="text-6xl" data-fade-color>Skills</h1>
 
                 <!-- Frontend Development -->
                 <div class="skill-category">

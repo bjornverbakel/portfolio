@@ -46,7 +46,7 @@ function getCardDelay(index: number) {
         <article class="w-full flex flex-col gap-16 text-justify">
             <section class="flex flex-col gap-4">
                 <div v-if="fadeState !== 'detail'" class="flex flex-col gap-4">
-                    <h1 class="text-xl" data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">Projects</h1>
+                    <h1 class="text-6xl" data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">Projects</h1>
                     <p data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">These are some of the projects
                         I've worked on:</p>
                 </div>

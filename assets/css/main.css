@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Mono Bold", sans-serif;
+  font-family: "Mono Regular", sans-serif;
   mix-blend-mode: difference;
 }
 
@@ -121,6 +121,7 @@ p {
 }
 
 .skill-category h2 {
+  text-transform: uppercase;
   font-family: "DMMono Light", sans-serif;
 }
 
@@ -148,9 +149,11 @@ p {
   span {
     color: var(--white);
     mix-blend-mode: difference;
+    font-family: "DMMono Regular", sans-serif;
   }
 
-  img, svg {
+  img,
+  svg {
     width: 2rem;
     height: 2rem;
     -webkit-user-drag: none;
