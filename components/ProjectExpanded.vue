@@ -1,13 +1,13 @@
 <template>
   <div class="project-expanded" data-fade-opacity>
     <div class="project-card">
-      <div class="flex btn gap-2 items-center" @click="$emit('close')">
+      <div class="flex w-fit pt-2 pb-2 items-center btn gap-2 items-center" @click="$emit('close')">
         <button class="h-fit">
           <span class="mix-blend-difference btn cursor-none">
-            <Icon icon="material-symbols:arrow-back" height="24" />
+            <Icon icon="material-symbols:arrow-back"  />
           </span>
         </button>
-        <span class="mix-blend-difference text-xl">Return to Projects</span>
+        <span class="mix-blend-difference text-sm">Return to Projects</span>
       </div>
       <h1 class="text-4xl sm:text-6xl title-wrapper flex gap-4">
         {{ project.title }}

@@ -53,7 +53,7 @@
     <main class="flex flex-row">
       <Transition name="fade-opacity" mode="out-in">
         <div
-          class="m-16 flex-col gap-1 mix-blend-difference fixed w-fit flex"
+          class="m-8 sm:m-16 flex-col gap-1 mix-blend-difference fixed w-fit flex"
           :class="{
             flex: !isDesktop && backdropState === 'header',
             hidden: !isDesktop && backdropState === 'content',
@@ -61,9 +61,9 @@
         >
           <div class="flex mix-blend-difference gap-1">
             <div class="bg-[var(--white)] w-1"></div>
-            <div class="bg-[var(--white)] w-full p-1 pl-3 pr-3">
-              <span class="mix-blend-difference text-xl">
-                Front-end Developer
+            <div class="bg-[var(--white)] w-full pl-2 pr-2">
+              <span class="text-sm mb-2 uppercase mix-blend-difference">
+                UX/UI • Front-end Dev
               </span>
             </div>
           </div>
