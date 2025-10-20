@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
 import { projects } from '~/data/projects';
 import ProjectExpanded from '~/components/ProjectExpanded.vue';
 
