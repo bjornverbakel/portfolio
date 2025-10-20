@@ -62,7 +62,7 @@
           <div class="flex mix-blend-difference gap-1">
             <div class="bg-[var(--white)] w-1"></div>
             <div class="bg-[var(--white)] w-full pl-2 pr-2">
-              <span class="text-sm mb-2 uppercase mix-blend-difference">
+              <span class="text-sm mb-2 uppercase mix-blend-difference">  
                 UX/UI • Front-end Dev
               </span>
             </div>
@@ -79,7 +79,7 @@
           id="contentWrapper"
           v-if="activeSection && backdropState === 'content'"
           :class="[
-            'justify justify-start flex-col flex w-full items-center m-8 sm:m-16 lg:ml-[24.25rem]',
+            'justify justify-start flex-col flex w-full m-8 sm:m-16 lg:ml-[24.25rem]',
           ]"
           :key="activeSection"
         >

@@ -43,7 +43,7 @@ function getCardDelay(index: number) {
 
 <template>
     <NuxtLayout>
-        <article class="w-full flex flex-col gap-16 text-justify">
+        <article class="w-full flex flex-col gap-16 text-justify max-w-[1500px]">
             <section class="flex flex-col gap-4">
                 <div v-if="fadeState !== 'detail'" class="flex flex-col gap-4">
                     <h1 class="text-6xl" data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">Projects</h1>
