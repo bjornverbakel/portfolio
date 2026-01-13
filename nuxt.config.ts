@@ -1,11 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
-  devtools: { enabled: true },
 
-  css: ['@/assets/css/main.css'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+  ],
 
   ssr: false,
+  devtools: { enabled: true },
 
   app: {
     head: {
@@ -21,18 +27,22 @@ export default defineNuxtConfig({
         { rel: 'preload', href: '/fonts/Mono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
         { rel: 'preload', href: '/fonts/Mono-Bold.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
         { rel: 'preload', href: '/fonts/Mono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
-      ]
-    }
+      ],
+    },
   },
 
-  modules: [
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
-  ],
+  css: ['@/assets/css/main.css'],
+
+  mdc: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+      },
+      preload: ['ts', 'vue', 'json', 'bash'],
+    },
+  },
+  compatibilityDate: '2025-05-15',
 
   eslint: {
     config: {
@@ -40,17 +50,7 @@ export default defineNuxtConfig({
         indent: 2,
         quotes: 'single',
         semi: true,
-      }
-    }
-  },
-
-  mdc: {
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'github-dark'
       },
-      preload: ['ts', 'vue', 'json', 'bash']
-    }
+    },
   },
 })

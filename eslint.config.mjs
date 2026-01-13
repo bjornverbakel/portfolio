@@ -1,7 +1,7 @@
 // @ts-ignore
-import withNuxt from './.nuxt/eslint.config.mjs'
-import vue from 'eslint-plugin-vue'
-import stylistic from '@stylistic/eslint-plugin'
+import withNuxt from './.nuxt/eslint.config.mjs';
+import vue from 'eslint-plugin-vue';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default withNuxt(
   {
@@ -24,4 +24,4 @@ export default withNuxt(
       'vue/multi-word-component-names': 'off',
     },
   },
-)
+);

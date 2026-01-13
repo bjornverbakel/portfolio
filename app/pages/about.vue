@@ -23,7 +23,7 @@
           class="text-6xl"
           data-fade-color
         >
-          Skills
+          Main Technologies
         </h1>
 
         <!-- Frontend Development -->
@@ -40,20 +40,10 @@
               data-fade-bg
             >
               <img
-                src="/images/skill-icons/js.svg"
-                alt="JavaScript"
-              >
-              <span>JavaScript</span>
-            </li>
-            <li
-              class="skill-card"
-              data-fade-bg
-            >
-              <img
                 src="/images/skill-icons/vue.svg"
-                alt="Vue.js"
+                alt="Vue"
               >
-              <span>Vue.js</span>
+              <span>Vue</span>
             </li>
             <li
               class="skill-card"
@@ -70,20 +60,20 @@
               data-fade-bg
             >
               <img
-                src="/images/skill-icons/react.svg"
-                alt="React"
+                src="/images/skill-icons/vuetify.svg"
+                alt="Vuetify"
               >
-              <span>React (R3F)</span>
+              <span>Vuetify</span>
             </li>
             <li
               class="skill-card"
               data-fade-bg
             >
               <img
-                src="/images/skill-icons/tailwind.svg"
-                alt="Tailwind"
+                src="/images/skill-icons/supabase.svg"
+                alt="Supabase"
               >
-              <span>Tailwind</span>
+              <span>Supabase</span>
             </li>
           </ul>
         </div>

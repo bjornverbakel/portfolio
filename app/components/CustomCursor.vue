@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!isCursorHidden">
     <!-- Outer cursor (border) -->
     <div
       class="custom-cursor-outer"
@@ -33,6 +33,7 @@ const outerX = ref(0)
 const outerY = ref(0)
 const isHoveringBtn = ref(false)
 const isClicking = ref(false)
+const isCursorHidden = ref(false)
 
 function handleMouseMove(e) {
   cursorX.value = e.clientX
@@ -47,12 +48,41 @@ function handleMouseUp() {
 }
 
 function handleMouseOver(e) {
-  if (e.target.classList?.contains('btn') || e.target.closest('.btn')) {
+  const target = e.target
+  // Hide custom cursor and show native cursor on inputs, textareas, or specific class
+  if (
+    target.tagName === 'INPUT'
+    || target.tagName === 'TEXTAREA'
+    || target.classList?.contains('native-cursor')
+    || target.closest('.native-cursor')
+  ) {
+    isCursorHidden.value = true
+    document.body.style.cursor = 'auto'
+  }
+  else {
+    isCursorHidden.value = false
+    document.body.style.cursor = 'none'
+  }
+
+  if (target.classList?.contains('btn') || target.closest('.btn')) {
     isHoveringBtn.value = true
   }
 }
 function handleMouseOut(e) {
-  if (e.target.classList?.contains('btn') || e.target.closest('.btn')) {
+  const target = e.target
+  // Logic to potentially unhide if leaving a specific element handled by mouseover flow
+  // Usually mouseover on the new element handles the state, but ensuring body cursor resets is good practice
+  if (
+    target.tagName === 'INPUT'
+    || target.tagName === 'TEXTAREA'
+    || target.classList?.contains('native-cursor')
+    || target.closest('.native-cursor')
+  ) {
+    isCursorHidden.value = false
+    document.body.style.cursor = 'none'
+  }
+
+  if (target.classList?.contains('btn') || target.closest('.btn')) {
     isHoveringBtn.value = false
   }
 }
@@ -71,6 +101,9 @@ onMounted(() => {
   window.addEventListener('mouseup', handleMouseUp)
   document.addEventListener('mouseover', handleMouseOver)
   document.addEventListener('mouseout', handleMouseOut)
+  // Ensure default state
+  document.body.style.cursor = 'none'
+
   // Initialize outer cursor position
   outerX.value = cursorX.value
   outerY.value = cursorY.value
@@ -82,6 +115,9 @@ onUnmounted(() => {
   window.removeEventListener('mouseup', handleMouseUp)
   document.removeEventListener('mouseover', handleMouseOver)
   document.removeEventListener('mouseout', handleMouseOut)
+
+  // Reset body cursor
+  document.body.style.cursor = 'auto'
   cancelAnimationFrame(animationFrame)
 })
 </script>

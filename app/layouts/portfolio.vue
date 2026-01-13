@@ -54,7 +54,7 @@
     </header>
 
     <main class="flex flex-row">
-    <Transition
+      <Transition
         name="fade-opacity"
         mode="out-in"
       >

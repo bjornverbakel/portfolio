@@ -2,8 +2,8 @@
 defineProps({
   isMobileMenuOpen: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const emit = defineEmits(['toggle'])

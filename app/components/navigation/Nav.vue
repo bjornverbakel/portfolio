@@ -32,7 +32,10 @@ function handleNavClick(section, event) {
         :class="{ active: activeSection === 'about' }"
         @click="handleNavClick('about', $event)"
       >
-        <NuxtLink to="/about" class="nav-link">
+        <NuxtLink
+          to="/about"
+          class="nav-link cursor-none"
+        >
           <span>About</span>
         </NuxtLink>
       </li>
@@ -41,7 +44,10 @@ function handleNavClick(section, event) {
         :class="{ active: activeSection === 'projects' }"
         @click="handleNavClick('projects', $event)"
       >
-        <NuxtLink to="/projects" class="nav-link">
+        <NuxtLink
+          to="/projects"
+          class="nav-link cursor-none"
+        >
           <span>Projects</span>
         </NuxtLink>
       </li>
@@ -50,7 +56,10 @@ function handleNavClick(section, event) {
         :class="{ active: activeSection === 'contact' }"
         @click="handleNavClick('contact', $event)"
       >
-        <NuxtLink to="/contact" class="nav-link">
+        <NuxtLink
+          to="/contact"
+          class="nav-link cursor-none"
+        >
           <span>Contact</span>
         </NuxtLink>
       </li>

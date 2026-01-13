@@ -23,7 +23,7 @@ function handleSelect(project: Project) {
   setTimeout(() => {
     selectedProject.value = project
     fadeState.value = 'detail'
-  }, 400)  // match with fade-out duration
+  }, 400) // match with fade-out duration
 }
 
 function handleCloseDetail() {
@@ -42,31 +42,57 @@ function getCardDelay(index: number) {
 </script>
 
 <template>
-    <NuxtLayout>
-        <article class="w-full flex flex-col gap-16 text-justify max-w-[1500px]">
-            <section class="flex flex-col gap-4">
-                <div v-if="fadeState !== 'detail'" class="flex flex-col gap-4">
-                    <h1 class="text-6xl" data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">Projects</h1>
-                    <p data-fade-opacity :class="{ 'fade-out': fadeState === 'fading' }">These are some of the projects
-                        I've worked on:</p>
-                </div>
-                <transition-group
-v-if="fadeState !== 'detail'" name="fade-opacity" tag="div"
-                    class="grid grid-cols-1 2xl:grid-cols-2 gap-8 items-stretch">
-                    <ProjectCard
-v-for="(project, i) in projects" v-show="fadeState === 'cards'" :key="project.title"
-                        data-fade-opacity
-                        :style="{ transitionDelay: fadeState === 'fading' ? '0ms' : getCardDelay(i) }"
-                        :title="project.title" :description-short="project.descriptionShort" :images="project.images"
-                        :skills="project.skills" :live-url="project.liveUrl" class="h-full"
-                        @select="() => handleSelect(project)" />
-                </transition-group>
-                <transition name="fade-opacity">
-                    <ProjectExpanded
-v-if="fadeState === 'detail' && selectedProject" :project="selectedProject"
-                        @close="handleCloseDetail" />
-                </transition>
-            </section>
-        </article>
-    </NuxtLayout>
+  <NuxtLayout>
+    <article class="w-full flex flex-col gap-16 text-justify max-w-[1500px]">
+      <section class="flex flex-col gap-4">
+        <div
+          v-if="fadeState !== 'detail'"
+          class="flex flex-col gap-4"
+        >
+          <h1
+            class="text-6xl"
+            data-fade-opacity
+            :class="{ 'fade-out': fadeState === 'fading' }"
+          >
+            Projects
+          </h1>
+          <p
+            data-fade-opacity
+            :class="{ 'fade-out': fadeState === 'fading' }"
+          >
+            These are some of the projects
+            I've worked on:
+          </p>
+        </div>
+        <transition-group
+          v-if="fadeState !== 'detail'"
+          name="fade-opacity"
+          tag="div"
+          class="grid grid-cols-1 2xl:grid-cols-2 gap-8 items-stretch"
+        >
+          <ProjectCard
+            v-for="(project, i) in projects"
+            v-show="fadeState === 'cards'"
+            :key="project.title"
+            data-fade-opacity
+            :style="{ transitionDelay: fadeState === 'fading' ? '0ms' : getCardDelay(i) }"
+            :title="project.title"
+            :description-short="project.descriptionShort"
+            :images="project.images"
+            :skills="project.skills"
+            :live-url="project.liveUrl"
+            class="h-full"
+            @select="() => handleSelect(project)"
+          />
+        </transition-group>
+        <transition name="fade-opacity">
+          <ProjectExpanded
+            v-if="fadeState === 'detail' && selectedProject"
+            :project="selectedProject"
+            @close="handleCloseDetail"
+          />
+        </transition>
+      </section>
+    </article>
+  </NuxtLayout>
 </template>
