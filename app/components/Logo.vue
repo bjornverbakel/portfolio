@@ -1,45 +1,49 @@
 <script setup>
-import { ref, computed, watch } from "vue";
-import { useEmitHeight } from "../composables/useEmitHeight";
+import { ref, computed, watch } from 'vue'
+import { useEmitHeight } from '../composables/useEmitHeight'
 
 const props = defineProps({
-  backdropState: String
-});
+  backdropState: { type: String, required: true },
+})
 
-const logoRef = ref(null);
-const emit = defineEmits(["height", "logoClick"]);
+const logoRef = ref(null)
+const emit = defineEmits(['height', 'logoClick'])
 
 // Use the height emitter composable
-const { updateHeight } = useEmitHeight(logoRef, emit, "height");
+const { updateHeight } = useEmitHeight(logoRef, emit, 'height')
 
 // Simplified: logo small only when backdropState === 'content' (same for mobile & desktop)
-const logoShouldBeSmall = computed(() => props.backdropState === 'content');
+const logoShouldBeSmall = computed(() => props.backdropState === 'content')
 
 // Update height when state changes
 watch(logoShouldBeSmall, () => {
-  setTimeout(updateHeight, 50);
-});
+  setTimeout(updateHeight, 50)
+})
 
 // Handle logo click: scroll to top & emit logoClick for parent to reset backdropState
 function handleLogoClick() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  emit("logoClick");
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  emit('logoClick')
 }
 </script>
 
 <template>
-  <div id="logo" class="flex m-8 mr-[116px] sm:mr-8 z-10" ref="logoRef">
-    <NuxtImg 
-      draggable="false" 
-      src="/images/logo.svg" 
-      alt="Logo" 
-      :class="{ 
-        'logo-small': logoShouldBeSmall, 
-        'logo-big': !logoShouldBeSmall 
+  <div
+    id="logo"
+    ref="logoRef"
+    class="flex m-8 mr-[116px] sm:mr-8 z-10"
+  >
+    <img
+      draggable="false"
+      src="/images/logo.svg"
+      alt="Logo"
+      :class="{
+        'logo-small': logoShouldBeSmall,
+        'logo-big': !logoShouldBeSmall,
       }"
       class="logo-transition btn"
       @click="handleLogoClick"
-    />
+    >
   </div>
 </template>
 

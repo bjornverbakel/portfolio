@@ -1,17 +1,20 @@
 <script setup>
-const props = defineProps({
-  activeSection: String,
+defineProps({
+  activeSection: {
+    type: String,
+    default: null,
+  },
   horizontal: {
     type: Boolean,
     default: false,
   },
-});
+})
 
-const emit = defineEmits(["navClick"]);
+const emit = defineEmits(['navClick'])
 
 function handleNavClick(section, event) {
-  event.preventDefault(); // Prevent default link behavior
-  emit("navClick", section);
+  event.preventDefault() // Prevent default link behavior
+  emit('navClick', section)
 }
 </script>
 

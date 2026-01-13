@@ -1,11 +1,20 @@
 <script setup>
 defineProps({
-  headerHeight: Number,
-  contentHeight: Number,
-  state: String,
+  headerHeight: {
+    type: Number,
+    default: 0,
+  },
+  contentHeight: {
+    type: Number,
+    default: 0,
+  },
+  state: {
+    type: String,
+    default: '',
+  },
   // Accept but don't use; prevents fallthrough attrs on root element
   isScrolling: Boolean,
-});
+})
 </script>
 
 <template>
@@ -16,7 +25,7 @@ defineProps({
         ? { top: headerHeight + 'px', bottom: '0px' }
         : { top: '0px', bottom: contentHeight + 'px' }
     "
-  ></div>
+  />
 </template>
 
 <style scoped>

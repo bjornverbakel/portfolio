@@ -5,11 +5,16 @@ export default defineNuxtConfig({
 
   css: ['@/assets/css/main.css'],
 
-  // Set ssr to false to avoid hydration mismatches for now
   ssr: false,
 
   app: {
     head: {
+      title: 'Bjorn Verbakel - Portfolio',
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Bjorn Verbakel Portfolio' },
+        { name: 'format-detection', content: 'telephone=no' },
+      ],
       link: [
         { rel: 'preload', href: '/fonts/DMMono-Light.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
         { rel: 'preload', href: '/fonts/DMMono-Regular.ttf', as: 'font', type: 'font/ttf', crossorigin: '' },
@@ -28,4 +33,24 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
   ],
+
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        quotes: 'single',
+        semi: true,
+      }
+    }
+  },
+
+  mdc: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark'
+      },
+      preload: ['ts', 'vue', 'json', 'bash']
+    }
+  },
 })

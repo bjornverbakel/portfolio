@@ -3,87 +3,87 @@
     <!-- Outer cursor (border) -->
     <div
       class="custom-cursor-outer"
-      :class="{ 'hovering-btn': isHoveringBtn, clicking: isClicking }"
+      :class="{ 'hovering-btn': isHoveringBtn, 'clicking': isClicking }"
       :style="{
         left: outerX + 'px',
         top: outerY + 'px',
       }"
-    ></div>
+    />
     <!-- Inner cursor -->
     <div
       class="custom-cursor-inner"
       :class="{
         'hovering-btn': isHoveringBtn,
-        clicking: isClicking,
+        'clicking': isClicking,
       }"
       :style="{
         left: cursorX + 'px',
         top: cursorY + 'px',
       }"
-    ></div>
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue'
 
-const cursorX = ref(0);
-const cursorY = ref(0);
-const outerX = ref(0);
-const outerY = ref(0);
-const isHoveringBtn = ref(false);
-const isClicking = ref(false);
+const cursorX = ref(0)
+const cursorY = ref(0)
+const outerX = ref(0)
+const outerY = ref(0)
+const isHoveringBtn = ref(false)
+const isClicking = ref(false)
 
 function handleMouseMove(e) {
-  cursorX.value = e.clientX;
-  cursorY.value = e.clientY;
+  cursorX.value = e.clientX
+  cursorY.value = e.clientY
 }
 
 function handleMouseDown() {
-  isClicking.value = true;
+  isClicking.value = true
 }
 function handleMouseUp() {
-  isClicking.value = false;
+  isClicking.value = false
 }
 
 function handleMouseOver(e) {
-  if (e.target.classList?.contains("btn") || e.target.closest(".btn")) {
-    isHoveringBtn.value = true;
+  if (e.target.classList?.contains('btn') || e.target.closest('.btn')) {
+    isHoveringBtn.value = true
   }
 }
 function handleMouseOut(e) {
-  if (e.target.classList?.contains("btn") || e.target.closest(".btn")) {
-    isHoveringBtn.value = false;
+  if (e.target.classList?.contains('btn') || e.target.closest('.btn')) {
+    isHoveringBtn.value = false
   }
 }
 
-let animationFrame;
+let animationFrame
 function animateOuterCursor() {
   // Move outer cursor towards inner cursor
-  outerX.value += (cursorX.value - outerX.value) * 0.15; // smaller = slower
-  outerY.value += (cursorY.value - outerY.value) * 0.15;
-  animationFrame = requestAnimationFrame(animateOuterCursor);
+  outerX.value += (cursorX.value - outerX.value) * 0.15 // smaller = slower
+  outerY.value += (cursorY.value - outerY.value) * 0.15
+  animationFrame = requestAnimationFrame(animateOuterCursor)
 }
 
 onMounted(() => {
-  window.addEventListener("mousemove", handleMouseMove);
-  window.addEventListener("mousedown", handleMouseDown);
-  window.addEventListener("mouseup", handleMouseUp);
-  document.addEventListener("mouseover", handleMouseOver);
-  document.addEventListener("mouseout", handleMouseOut);
+  window.addEventListener('mousemove', handleMouseMove)
+  window.addEventListener('mousedown', handleMouseDown)
+  window.addEventListener('mouseup', handleMouseUp)
+  document.addEventListener('mouseover', handleMouseOver)
+  document.addEventListener('mouseout', handleMouseOut)
   // Initialize outer cursor position
-  outerX.value = cursorX.value;
-  outerY.value = cursorY.value;
-  animateOuterCursor();
-});
+  outerX.value = cursorX.value
+  outerY.value = cursorY.value
+  animateOuterCursor()
+})
 onUnmounted(() => {
-  window.removeEventListener("mousemove", handleMouseMove);
-  window.removeEventListener("mousedown", handleMouseDown);
-  window.removeEventListener("mouseup", handleMouseUp);
-  document.removeEventListener("mouseover", handleMouseOver);
-  document.removeEventListener("mouseout", handleMouseOut);
-  cancelAnimationFrame(animationFrame);
-});
+  window.removeEventListener('mousemove', handleMouseMove)
+  window.removeEventListener('mousedown', handleMouseDown)
+  window.removeEventListener('mouseup', handleMouseUp)
+  document.removeEventListener('mouseover', handleMouseOver)
+  document.removeEventListener('mouseout', handleMouseOut)
+  cancelAnimationFrame(animationFrame)
+})
 </script>
 
 <style scoped>

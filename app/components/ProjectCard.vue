@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { NuxtImg } from "#components";
 import { Icon } from '@iconify/vue'
 
 
@@ -18,19 +17,25 @@ interface Props {
   liveUrl?: string;
 }
 
-const emit = defineEmits(["select"]);
-defineProps<Props>();
+const emit = defineEmits(['select'])
+defineProps<Props>()
 </script>
 
 <template>
   <div class="project-card btn" @click="emit('select')">
 
-    <NuxtImg v-if="images && images.length" :src="images[0].src" :alt="images[0].alt"
-      class="project-image w-[20vw] min-w-[225px] lg:min-w-[210px] max-w-[225px]"  />
+    <NuxtImg 
+      v-if="images && images.length" 
+      :src="images[0]?.src" 
+      :alt="images[0]?.alt"
+      format="webp"
+      sizes="300px"
+      class="project-image w-[20vw] min-w-[225px] lg:min-w-[210px] max-w-[225px] aspect-video object-cover bg-gray-200" 
+    />
 
     <div class="project-details">
       <div class="flex gap-4 flex-1">
-        <div class="hidden md:flex bg-[var(--white)] w-[1px] mix-blend-difference"></div>
+        <div class="hidden md:flex bg-[var(--white)] w-[1px] mix-blend-difference"/>
         <div class="flex flex-col flex-1 gap-4">
           <h1 class="text-xl title-wrapper">
             <span>{{ title }}</span>
@@ -41,7 +46,7 @@ defineProps<Props>();
             </p>
             <div class="flex gap-4 justify-between">
               <div class="skill-card">
-                <NuxtImg v-for="skill in skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" />
+                <img v-for="skill in skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" >
               </div>
               <a v-if="liveUrl" :href="liveUrl" class="btn hover-btn" target="_blank" rel="noopener noreferrer">
                 <Icon icon="uil:browser" height="none" :style="{ width: '24px', height: '24px' }" />

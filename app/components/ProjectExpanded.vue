@@ -1,7 +1,7 @@
 <template>
   <div class="project-expanded" data-fade-opacity>
     <div class="project-card">
-      <div class="flex w-fit pt-2 pb-2 items-center btn gap-2 items-center" @click="$emit('close')">
+      <div class="flex w-fit pt-2 pb-2 btn gap-2 items-center" @click="$emit('close')">
         <button class="h-fit">
           <span class="mix-blend-difference btn cursor-none">
             <Icon icon="material-symbols:arrow-back"  />
@@ -14,15 +14,30 @@
       </h1>
       <div class="flex flex-col 2xl:flex-row gap-4 2xl:gap-8">
         <div class="project-image-gallery 2xl:max-w-[1000px] 2xl:w-[50%]">
-          <img class="project-image w-full object-contain" :src="project.images[selectedImage].src"
-            :alt="project.images[selectedImage].alt" />
+          <NuxtImg 
+            class="project-image w-full object-contain" 
+            :src="activeImage?.src"
+            :alt="activeImage?.alt"
+            format="webp"
+            sizes="100vw lg:1000px"
+            placeholder
+          />
           <div v-if="project.images.length > 1" class="image-thumbnails overflow-x-scroll ">
-            <img v-for="(img, idx) in project.images" :key="img.src" :src="img.src" :alt="img.alt"
-              :class="['thumbnail btn', { active: idx === selectedImage }]" @click="selectedImage = idx" />
+            <NuxtImg 
+              v-for="(img, idx) in project.images" 
+              :key="img.src" 
+              :src="img.src" 
+              :alt="img.alt"
+              :class="['thumbnail btn', { active: idx === selectedImage }]" 
+              format="webp"
+              sizes="150px"
+              loading="lazy"
+              @click="selectedImage = typeof idx === 'number' ? idx : 0" 
+            />
           </div>
         </div>
 
-        <div class="hidden 2xl:flex 2xl:bg-[var(--white)] 2xl:w-[1px] 2xl:opacity-20 2xl:mix-blend-difference"></div>
+        <div class="hidden 2xl:flex 2xl:bg-[var(--white)] 2xl:w-[1px] 2xl:opacity-20 2xl:mix-blend-difference"/>
 
         <div class="project-details">
           <div class="flex gap-8 flex-1">
@@ -30,14 +45,25 @@
               <div class="flex-1 flex flex-col gap-2">
                 <div class="flex gap-4 w-full justify-between items-center">
                   <div class="skill-card">
-                    <NuxtImg v-for="skill in project.skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" />
+                    <img v-for="skill in props.project.skills" :key="skill.alt" :src="skill.icon" :alt="skill.alt" >
                   </div>
-                  <a v-if="project.liveUrl" :href="project.liveUrl" class="btn cursor-none hover-btn" target="_blank"
+                  <div class="flex gap-4">
+                  <a
+v-if="props.project.liveUrl" :href="props.project.liveUrl" class="btn cursor-none hover-btn" target="_blank"
                     rel="noopener noreferrer">
                     <Icon icon="uil:browser" height="none" :style="{ width: '24px', height: '24px' }" /><span>View
                       Live</span>
                   </a>
+                  <a
+v-if="props.project.repoUrl" :href="props.project.repoUrl" class="btn cursor-none hover-btn" target="_blank"
+                    rel="noopener noreferrer">
+                    <Icon icon="uil:github" height="none" :style="{ width: '24px', height: '24px' }" /><span>Github</span>
+                  </a>
+                  </div>
                 </div>
+                <span v-if="props.project.type" class="text-sm mix-blend-difference font-mono uppercase">
+                  {{ props.project.type }}
+                </span>
                 <p>
                   {{ project.descriptionLong }}
                 </p>
@@ -51,11 +77,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
-const props = defineProps<{ project: any }>()
+type Project = typeof projects[number]
+
+const props = defineProps<{ project: Project }>()
 const selectedImage = ref(0)
+
+const activeImage = computed(() => {
+  return props.project.images[selectedImage.value]
+})
+
+defineEmits(['close'])
 </script>
 
 <style scoped>
@@ -77,8 +111,6 @@ const selectedImage = ref(0)
   height: 100%;
   z-index: 1;
   pointer-events: none;
-
-
 }
 
 .project-image {
