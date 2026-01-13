@@ -57,7 +57,7 @@ defineProps<Props>()
               <a
                 v-if="liveUrl"
                 :href="liveUrl"
-                class="btn hover-btn"
+                class="btn hover-btn cursor-pointer native-cursor"
                 target="_blank"
                 rel="noopener noreferrer"
               >
